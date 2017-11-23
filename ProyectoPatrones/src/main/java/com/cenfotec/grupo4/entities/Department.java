@@ -7,7 +7,8 @@ public class Department {
 	private String idDep;
 	private String publicKey;
 	private String privatekey;
-	private String recivedProcedures;
+	private String recivedProcedure;
+	private boolean hasProcedureEncripted;
 	private ArrayList<Procedure> currentProcedures;
 	private ArrayList<Employee> employees;
 	public Department(String publicKey, String privatekey, String recivedProcedures,
@@ -17,8 +18,9 @@ public class Department {
 		this.employees=employees;
 		this.publicKey = publicKey;
 		this.privatekey = privatekey;
-		this.recivedProcedures = recivedProcedures;
+		this.recivedProcedure = recivedProcedures;
 		this.currentProcedures = currentProcedures;
+		this.hasProcedureEncripted=false;
 	}
 	public Department() {
 		
@@ -48,10 +50,10 @@ public class Department {
 		this.privatekey = privatekey;
 	}
 	public String getRecivedProcedures() {
-		return recivedProcedures;
+		return recivedProcedure;
 	}
 	public void setRecivedProcedures(String recivedProcedures) {
-		this.recivedProcedures = recivedProcedures;
+		this.recivedProcedure = recivedProcedures;
 	}
 	public ArrayList<Procedure> getCurrentProcedures() {
 		return currentProcedures;
@@ -64,6 +66,13 @@ public class Department {
 	}
 	public void setEmployees(ArrayList<Employee> employees) {
 		this.employees = employees;
+	}
+	public boolean hasEncriptedProcedure() {
+		return this.hasProcedureEncripted;
+	}
+	public void recivedProcedure(String procedureEncripted) {
+		this.hasProcedureEncripted=true;
+		this.recivedProcedure=procedureEncripted;
 	}
 	
 	
