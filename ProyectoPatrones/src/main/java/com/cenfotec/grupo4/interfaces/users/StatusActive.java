@@ -1,6 +1,7 @@
 package com.cenfotec.grupo4.interfaces.users;
 
 import com.cenfotec.grupo4.entities.Procedure;
+import com.cenfotec.grupo4.entities.Task;
 import com.cenfotec.grupo4.interfaces.IStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,16 +12,31 @@ public class StatusActive implements IStatus{
 	public StatusActive() {
 		status="Active";
 	}
-	@Override
-	public boolean treatProcedure(Procedure procedure) {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public String treatProcedure(Procedure procedure,boolean desition) {
+		Task task=procedure.getCurrentTask();
+		task=task.treatTast(desition);
+		if(task==null) {
+			changeProcedureStatus(procedure);
+		}
+		return "Task treated !";
 	}
 
-	@Override
+	
 	public void changeProcedureStatus(Procedure procedure) {
-		// TODO Auto-generated method stub
+		procedure.setActiveStatus(this);
 		
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	public String treadTask(Task task,boolean desition,Procedure procedure) {
+		task=task.treatTast(desition);
+		if(task==null) {
+			changeProcedureStatus(procedure);
+		}
+		return "Task treated !";
 	}
 
 }

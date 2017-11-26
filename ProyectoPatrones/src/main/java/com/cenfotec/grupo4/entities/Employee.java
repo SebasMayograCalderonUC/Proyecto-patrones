@@ -1,13 +1,18 @@
 package com.cenfotec.grupo4.entities;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Employee {
 	private static int cantEmployees=0;
+	@JsonProperty
 	private String idEmployee;
+	@JsonProperty
 	private String employeeFullName;
+	@JsonProperty
 	private String job;
+	@JsonProperty
 	private ArrayList<Procedure> treatedProcedures;
 	
 	public Employee() {
@@ -19,6 +24,7 @@ public class Employee {
 		this.job = job;
 		cantEmployees++;
 		this.idEmployee="EMP-"+cantEmployees;
+		this.treatedProcedures=null;
 	}
 
 	public static int getCantEmployees() {

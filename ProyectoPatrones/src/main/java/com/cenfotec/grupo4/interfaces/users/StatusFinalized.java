@@ -14,16 +14,18 @@ public class StatusFinalized implements IStatus{
 	public StatusFinalized(String status) {
 		this.status=status;
 	}
-	@Override
-	public boolean treatProcedure(Procedure procedure) {
-		// TODO Auto-generated method stub
-		return false;
+
+	public String getStatus() {
+		return status;
 	}
 
-	@Override
 	public void changeProcedureStatus(Procedure procedure) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public String treatProcedure(Procedure procedure, boolean desition) {
+		return "Procedure has ended";
 	}
 
 }

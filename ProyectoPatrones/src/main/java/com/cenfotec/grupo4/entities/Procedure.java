@@ -1,5 +1,7 @@
 package com.cenfotec.grupo4.entities;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -11,24 +13,20 @@ import com.fasterxml.jackson.annotation.*;
 public class Procedure {
 	
 	private static int cantProcedures=0;
-	@JsonProperty("idProcedure")
+	@JsonProperty
 	private String idProcedure;
-	@JsonProperty("startingDate")
+	@JsonProperty
 	private Date startingDate;
-	@JsonProperty("finalDate")
+	@JsonProperty
 	private Date finalDate;
-	@JsonProperty("tasks")
-	private ArrayList<Task> tasks;
-	@JsonProperty("currentTask")
+	@JsonProperty
 	private Task currentTask;
-	@JsonProperty("actualStatus")
+	@JsonProperty
 	private IStatus actualStatus;
-	@JsonIgnore
+
 	private StatusActive activeStatus;
-	@JsonIgnore
 	private StatusFinalized finalizedStatus;
 
-	
 	public Procedure() {
 		
 	}
@@ -36,13 +34,12 @@ public class Procedure {
 	public Procedure(Date startingDate,Date finalDate,ArrayList<Task> tasks) {
 		cantProcedures++;
 		this.idProcedure="PRO-"+cantProcedures;
-		this.tasks=tasks;
 		this.startingDate=startingDate;
 		this.finalDate=finalDate;
-		this.currentTask=this.tasks.get(0);
 		activeStatus=new StatusActive();
 		finalizedStatus= new StatusFinalized("Prueba 1");
-		actualStatus=activeStatus;
+		
+		
 	}
 
 	public static int getCantProcedures() {
@@ -77,13 +74,6 @@ public class Procedure {
 		this.finalDate = finalDate;
 	}
 
-	public ArrayList<Task> getTasks() {
-		return tasks;
-	}
-
-	public void setTasks(ArrayList<Task> tasks) {
-		this.tasks = tasks;
-	}
 
 	public Task getCurrentTask() {
 		return currentTask;
@@ -108,15 +98,43 @@ public class Procedure {
 	public void setFinalizedStatus(StatusFinalized finalizedStatus) {
 		this.finalizedStatus = finalizedStatus;
 	}
-
+	public String treatTask(boolean desition) {
+		String result=actualStatus.treatProcedure(this, desition);
+		return result;
+	}
 	public IStatus getActualStatus() {
 		return actualStatus;
 	}
 
-	public void setActualStatus(IStatus actualStatus) {
-		this.actualStatus = actualStatus;
-	}
-	
-	
-	
+	public void setActualStatus(IStatus status) {
+		if(status.getClass().isInstance(StatusActive.class)) {
+			this.actualStatus=this.finalizedStatus;
+		}
+	}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

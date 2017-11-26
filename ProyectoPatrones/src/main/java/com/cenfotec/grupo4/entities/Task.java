@@ -1,54 +1,60 @@
 package com.cenfotec.grupo4.entities;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.codehaus.jackson.annotate.*;
 
 public class Task {
 	@JsonProperty
 	private String description;
 	@JsonProperty
-	private boolean isFinal;
+	private Task acceptedTask;
 	@JsonProperty
-	private TaskDesition desition;
+	private Task deniedTask;
 	
 	public Task() {
 		
 	}
 	
-	public Task(String description,boolean isFinal) {
-		this.isFinal=isFinal;
+	public Task(String description,Task accepted,Task denied){
+		this.acceptedTask=accepted;
+		this.deniedTask=denied;
 		this.description=description;
-		this.desition=TaskDesition.NoDesitionYet;
 	}
 	
 	public String getDescription() {
 		return description;
 	}
 	
+	public Task getAcceptedTask() {
+		return acceptedTask;
+	}
+
+	public void setAcceptedTask(Task acceptedTask) {
+		this.acceptedTask = acceptedTask;
+	}
+
+	public Task getDeniedTask() {
+		return deniedTask;
+	}
+
+	public void setDeniedTask(Task deniedTask) {
+		this.deniedTask = deniedTask;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
-	public boolean isFinal() {
-		return isFinal;
+	public Task treatTast(boolean desition) {
+		if(desition) {
+			return this.acceptedTask;
+		}
+		return this.deniedTask;
 	}
 	
-	public void setFinal(boolean isFinal) {
-		this.isFinal = isFinal;
-	}
-	
-	public TaskDesition getDesition() {
-		return desition;
-	}
-	
-	public void setDesition(TaskDesition desition) {
-		this.desition = desition;
-	}
-	
+
 	public String toString() {
 		String info ="---------------\n";
 		info+="Desc: "+description+"\n";
-		info+="Final task: "+isFinal+"\n";
-		info+="Desition: "+desition+"\n";
 		info+="---------------\n";
 		return info;
 	}
