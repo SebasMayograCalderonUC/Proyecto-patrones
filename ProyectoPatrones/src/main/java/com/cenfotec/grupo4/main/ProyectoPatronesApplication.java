@@ -14,6 +14,7 @@ import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.util.ObjectBuffer;
+import org.mockito.internal.matchers.VarargCapturingMatcher;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,6 +23,8 @@ import com.fasterxml.jackson.*;
 import com.cenfotec.grupo4.entities.Employee;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
+
+import org.apache.bsf.util.event.adapters.java_awt_event_ActionAdapter;
 import org.codehaus.*;
 
 
@@ -39,11 +42,31 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		app.run(args);
 	}
 	public void run(String... args) throws JsonGenerationException, JsonMappingException, IOException {
-		String filename = "time.ser";
-        Employee emp = new Employee("Sebas", "Sistemas");
-        ObjectMapper o=new ObjectMapper();
-        String json= o.writeValueAsString(emp);
-        System.out.println(json);
+		
+		Task task=new Task();
+		Task task1=new Task();
+		task1.setDescription("Hijo derecho");
+		Task task_1=new Task();
+		task_1.setDescription("Hijo izq");
+		Task task12=new Task();
+		task12.setDescription("Hijo derecho derecho");
+		Task task1_2=new Task();
+		task1_2.setDescription("hiijoi derecho izq");
+		Task task_12=new Task();
+		task_12.setDescription("hijo izq derecho");
+		Task task_1_2=new Task();
+		task_1_2.setDescription("Hijo izq izq");
+		task.setDescription("Padre");
+		task.setAcceptedTask(task1);
+		task.setDeniedTask(task_1);
+		task1.setAcceptedTask(task12);
+		task1.setDeniedTask(task1_2);
+		task_1.setAcceptedTask(task_12);
+		task_1.setDeniedTask(task_1_2);
+		ObjectMapper objectMapper= new ObjectMapper();
+		String json=objectMapper.writeValueAsString(task);
+		Task taskPrueba=objectMapper.readValue(json, Task.class);
+		System.out.println(taskPrueba.getAcceptedTask().getAcceptedTask().getDescription());
     }
 		
 	
