@@ -23,6 +23,7 @@ import com.fasterxml.jackson.*;
 import com.cenfotec.grupo4.entities.Employee;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
+import com.cenfotec.grupo4.utils.Gestor;
 
 import org.apache.bsf.util.event.adapters.java_awt_event_ActionAdapter;
 import org.codehaus.*;
@@ -43,18 +44,18 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 	public void run(String... args) throws JsonGenerationException, JsonMappingException, IOException {
 		
-		Task task=new Task();
-		Task task1=new Task();
+		Task task= Gestor.crearTarea();
+		Task task1=Gestor.crearTarea();
 		task1.setDescription("Hijo derecho");
-		Task task_1=new Task();
+		Task task_1=Gestor.crearTarea();
 		task_1.setDescription("Hijo izq");
-		Task task12=new Task();
+		Task task12=Gestor.crearTarea();
 		task12.setDescription("Hijo derecho derecho");
-		Task task1_2=new Task();
+		Task task1_2=Gestor.crearTarea();
 		task1_2.setDescription("hiijoi derecho izq");
-		Task task_12=new Task();
+		Task task_12=Gestor.crearTarea();
 		task_12.setDescription("hijo izq derecho");
-		Task task_1_2=new Task();
+		Task task_1_2=Gestor.crearTarea();
 		task_1_2.setDescription("Hijo izq izq");
 		task.setDescription("Padre");
 		task.setAcceptedTask(task1);
