@@ -13,7 +13,7 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.annotate.JsonMethod;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.util.ObjectBuffer;
+import org.codehaus.jackson.map.*;
 import org.mockito.internal.matchers.VarargCapturingMatcher;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
@@ -64,10 +64,13 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		task1.setDeniedTask(task1_2);
 		task_1.setAcceptedTask(task_12);
 		task_1.setDeniedTask(task_1_2);
-		ObjectMapper objectMapper= new ObjectMapper();
-		String json=objectMapper.writeValueAsString(task);
-		Task taskPrueba=objectMapper.readValue(json, Task.class);
-		System.out.println(taskPrueba.getAcceptedTask().getAcceptedTask().getDescription());
+		Procedure procedure=new Procedure(null,null,task);
+		System.out.println(procedure.treatProcedure(false));
+		System.out.println(procedure.treatProcedure(true));
+		System.out.println(procedure.getCurrentTask().getDescription());
+		System.out.println(procedure.treatProcedure(true));
+		System.out.println(procedure.treatProcedure(true));
+		System.out.println(procedure.treatProcedure(true));
     }
 		
 	

@@ -8,7 +8,9 @@ import java.util.Date;
 import com.cenfotec.grupo4.interfaces.IStatus;
 import com.cenfotec.grupo4.interfaces.users.StatusActive;
 import com.cenfotec.grupo4.interfaces.users.StatusFinalized;
-import com.fasterxml.jackson.annotation.*;
+import com.couchbase.client.core.annotations.InterfaceAudience.Public;
+
+import org.codehaus.jackson.annotate.*;
 
 public class Procedure {
 	
@@ -23,24 +25,28 @@ public class Procedure {
 	private Task currentTask;
 	@JsonProperty
 	private IStatus actualStatus;
-
+	@JsonIgnore
 	private StatusActive activeStatus;
+	@JsonIgnore
 	private StatusFinalized finalizedStatus;
 
 	public Procedure() {
-		
+		this.activeStatus=new StatusActive();
+		this.finalizedStatus= new StatusFinalized();
+		this.actualStatus=activeStatus;
 	}
 	
-	public Procedure(Date startingDate,Date finalDate,ArrayList<Task> tasks) {
+	public Procedure(Date startingDate,Date finalDate,Task task) {
 		cantProcedures++;
 		this.idProcedure="PRO-"+cantProcedures;
 		this.startingDate=startingDate;
 		this.finalDate=finalDate;
+		this.currentTask=task;
 		activeStatus=new StatusActive();
-		finalizedStatus= new StatusFinalized("Prueba 1");
-		
-		
+		finalizedStatus= new StatusFinalized();
+		actualStatus=activeStatus;	
 	}
+
 
 	public static int getCantProcedures() {
 		return cantProcedures;
@@ -74,7 +80,6 @@ public class Procedure {
 		this.finalDate = finalDate;
 	}
 
-
 	public Task getCurrentTask() {
 		return currentTask;
 	}
@@ -98,19 +103,19 @@ public class Procedure {
 	public void setFinalizedStatus(StatusFinalized finalizedStatus) {
 		this.finalizedStatus = finalizedStatus;
 	}
-	public String treatTask(boolean desition) {
-		String result=actualStatus.treatProcedure(this, desition);
+	public String treatProcedure(boolean desition) {
+		String result=actualStatus.treatTask(this, desition);
 		return result;
 	}
+
 	public IStatus getActualStatus() {
 		return actualStatus;
 	}
 
 	public void setActualStatus(IStatus status) {
-		if(status.getClass().isInstance(StatusActive.class)) {
-			this.actualStatus=this.finalizedStatus;
-		}
-	}	
+		this.actualStatus=status;
+	}
+	
 }
 
 
