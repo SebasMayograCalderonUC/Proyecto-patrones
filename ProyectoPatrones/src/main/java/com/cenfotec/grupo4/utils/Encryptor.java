@@ -1,6 +1,7 @@
 package com.cenfotec.grupo4.utils;
 
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 import java.io.IOException;
 
@@ -8,37 +9,43 @@ import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.omg.CORBA.NO_IMPLEMENT;
 
+import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Procedure;
+import com.cenfotec.grupo4.interfaces.IEncryptManager;
+
 
 public class Encryptor {
 	private static Encryptor instance;
-	private ObjectMapper objectMapper;
-	private Encryptor() {
-		objectMapper=new ObjectMapper();
+	private JsonManager jsonManager;
+	private IEncryptManager encryptManager;
+
+	private Encryptor(SavingType type) {
+		jsonManager= new JsonManager();
+		this.encryptManager=EncryptManagerFactory.EncryptorFactory(type);	
 	}
-	public static Encryptor getInstance() {
+	public static Encryptor getInstance(SavingType type) {
 		if(instance==null) {
-			instance=new Encryptor();
+			instance=new Encryptor(type);
 		}
 		return instance;
 	}
-	public String encrypProcedure(Procedure procedure) throws JsonGenerationException, JsonMappingException, IOException {
-		String json=convertToJson(procedure);
-		return json;
+	public void createKey(String keyName) throws Exception {
+		this.encryptManager.createKey(keyName);
 	}
-	private String convertToJson(Procedure procedure) throws JsonGenerationException, JsonMappingException, IOException {
-		String json=objectMapper.writeValueAsString(procedure);
-		return json;
+	public void encrypt(Procedure procedure,Department department) throws JsonGenerationException, JsonMappingException, IOException, Exception {
+		String json=jsonManager.createJsonFromProcedure(procedure);
+		this.encryptManager.encryptMessage(procedure.getProcedureName(),json,department.getPrivatekey());
 	}
-	public Procedure decryptProcedure(String encriptedProcedure) throws JsonParseException, JsonMappingException, IOException {
-		return parseFromJsonToProcedure(encriptedProcedure);
+	public Procedure decrypt(String procedureName,Department department) throws Exception {
+		String json=encryptManager.decryptMessage(procedureName, department.getPrivatekey());
+		return jsonManager.createProcedureFromJsonString(json);
 	}
-	private Procedure parseFromJsonToProcedure(String JSON) throws JsonParseException, JsonMappingException, IOException {
-		return objectMapper.readValue(JSON, Procedure.class);
-	}
+	
+	
+
 }
+
 
 
 

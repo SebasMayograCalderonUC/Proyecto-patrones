@@ -16,6 +16,8 @@ public class Procedure {
 	
 	private static int cantProcedures=0;
 	@JsonProperty
+	private String procedureName;
+	@JsonProperty
 	private String idProcedure;
 	@JsonProperty
 	private Date startingDate;
@@ -36,12 +38,13 @@ public class Procedure {
 		this.actualStatus=activeStatus;
 	}
 	
-	public Procedure(Date startingDate,Date finalDate,Task task) {
+	public Procedure(Date startingDate,Date finalDate,Task task,String procedureName) {
 		cantProcedures++;
 		this.idProcedure="PRO-"+cantProcedures;
 		this.startingDate=startingDate;
 		this.finalDate=finalDate;
 		this.currentTask=task;
+		this.procedureName=procedureName;
 		activeStatus=new StatusActive();
 		finalizedStatus= new StatusFinalized();
 		actualStatus=activeStatus;	
@@ -114,6 +117,14 @@ public class Procedure {
 
 	public void setActualStatus(IStatus status) {
 		this.actualStatus=status;
+	}
+
+	public String getProcedureName() {
+		return procedureName;
+	}
+
+	public void setProcedureName(String procedureName) {
+		this.procedureName = procedureName;
 	}
 	
 }

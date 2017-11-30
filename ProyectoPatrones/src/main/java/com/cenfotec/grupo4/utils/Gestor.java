@@ -4,7 +4,7 @@ import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Employee;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.codehaus.jackson.map.ObjectMapper;
 
 public class Gestor {
 
