@@ -20,12 +20,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.fasterxml.jackson.*;
+import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Employee;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
 import com.cenfotec.grupo4.utils.EncryptManagerSymetric;
 import com.cenfotec.grupo4.utils.Encryptor;
 import com.cenfotec.grupo4.utils.Gestor;
+import com.cenfotec.grupo4.utils.JsonManager;
 
 import org.apache.bsf.util.event.adapters.java_awt_event_ActionAdapter;
 import org.codehaus.*;
@@ -46,27 +48,39 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 	
 	public void run(String... args) throws Exception {
-		Task leftTask=new Task("left task",null,null);
-		Task rightTask=new Task("Right task",null,null);
-		Task task= new Task("Padre",rightTask,leftTask);
-		Procedure procedure=new Procedure(null,null,task,"Prueba1");
-		ObjectMapper objectMapper=new ObjectMapper();
-		String json=objectMapper.writeValueAsString(procedure);
-		System.out.println("----------------------------");
-		System.out.println("original");
-		System.out.println(json);
-		System.out.println("------------------------------");
-		EncryptManagerSymetric manager=new EncryptManagerSymetric();
-		String keyName="llave";
-		/*manager.createKey(keyName);
-		manager.encryptMessage(procedure.getProcedureName(), json, keyName);*/
-		String json2=manager.decryptMessage(procedure.getProcedureName(), keyName);
-		System.out.println("----------------------------------");
-		System.out.println("Desencriptado");
-		System.out.println(json2);
-		System.out.println("--------------------------------");
-		Procedure procedure2=objectMapper.readValue(json2, Procedure.class);
-		System.out.println(procedure2.getCurrentTask().getDescription());
+		JsonManager jsonManager=new JsonManager();
+		ArrayList<Employee> employees= new ArrayList<Employee>();
+		employees.add(new Employee("Sebastian Mayorga","Contabilidad"));
+		employees.add(new Employee("Daniela Villalobos","Contabilidad"));
+		employees.add(new Employee("Pablo Ramirez","Contabilidad"));
+		employees.add(new Employee("Ignacio Rojas","Contabilidad"));
+		
+		
+		Task taskHijoDer= new Task("Aprobacion de Beca", null, null);
+		Task taskHijoIzq=new Task("Negacion de beca", null, null);
+		Task taskPadre=new Task("Tramite de beca", taskHijoDer, taskHijoIzq);
+		
+		Task taskHijoDer2= new Task("Aprobacion de convalidacion", null, null);
+		Task taskHijoIzq2=new Task("Negacion de convalidacion", null, null);
+		Task taskPadre2=new Task("Convalidacion de Curso algebra", taskHijoDer2, taskHijoIzq2);
+		
+		Task taskHijoDer3= new Task("Aceptacion de matricula", null, null);
+		Task taskHijoIzq3=new Task("Negacion de matricula", null, null);
+		Task taskPadre3=new Task("Matricula estudiante", taskHijoDer3, taskHijoIzq3);
+		ArrayList<Procedure>procedures=new ArrayList<Procedure>();
+		procedures.add(new Procedure(null, null, taskPadre, "Tramite 1"));
+		procedures.add(new Procedure(null, null, taskPadre2, "Tramite 2"));
+		procedures.add(new Procedure(null, null, taskPadre3, "Tramite 3"));
+		
+		employees.get(0).setTreatedProcedures(procedures);
+		
+		Department department= new Department("clapaucios022", "krat56Los", null, procedures, employees,"Departamento de ");
+		ArrayList<Department> departments=new ArrayList<Department>();
+		departments.add(department);
+		jsonManager.saveDempartments(departments);
+		ArrayList<Department>departments=jsonManager.fetchDepartments();
+		
+		
 			
     }
 		
