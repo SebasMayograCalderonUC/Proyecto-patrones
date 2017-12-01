@@ -56,7 +56,6 @@ public class JsonManager {
 	public void saveDempartments(ArrayList<Department>departments) throws JsonGenerationException, JsonMappingException, IOException {
 		deleteFiles("../data/Department");
 		for(int i=0;i<departments.size();i++) {
-			System.out.println("Saved!");
 			objectMapper.writeValue(new File("../data/Department/dep"+i+".json"), departments.get(i));
 		}
 	}
