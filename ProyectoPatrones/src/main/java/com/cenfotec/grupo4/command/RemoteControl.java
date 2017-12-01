@@ -1,5 +1,7 @@
 package com.cenfotec.grupo4.command;
 
+import com.cenfotec.grupo4.interfaces.ICommand;
+
 public class RemoteControl {
 	ICommand  unSlot;
 	
