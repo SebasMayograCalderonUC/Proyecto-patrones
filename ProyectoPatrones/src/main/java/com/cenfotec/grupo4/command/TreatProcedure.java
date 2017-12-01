@@ -18,10 +18,4 @@ public class TreatProcedure implements ICommand{
 		gestor.toString();
 	}
 
-	@Override
-	public boolean executar(Procedure pProcedure) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

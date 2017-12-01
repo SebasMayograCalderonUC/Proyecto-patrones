@@ -17,12 +17,6 @@ public class SendProcedure  implements ICommand{
 	@Override
 	public void executar() {
 		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public boolean executar(Procedure pProcedure) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 }
