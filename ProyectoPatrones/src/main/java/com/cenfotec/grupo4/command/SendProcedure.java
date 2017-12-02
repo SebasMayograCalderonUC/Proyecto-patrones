@@ -4,11 +4,11 @@ import com.cenfotec.grupo4.entities.*;
 import com.cenfotec.grupo4.interfaces.ICommand;
 import com.cenfotec.grupo4.utils.Gestor;
 
-public class EnviarTramite  implements ICommand{
+public class SendProcedure  implements ICommand{
 	private Procedure procedure;
 	private Department department;
 	private Gestor gestor;
-	public EnviarTramite(Gestor pgestor,Procedure pProcedure, Department pDepartment) {
+	public SendProcedure(Gestor pgestor,Procedure pProcedure, Department pDepartment) {
 		procedure = pProcedure;
 		department = pDepartment;
 		gestor = pgestor;
@@ -17,12 +17,6 @@ public class EnviarTramite  implements ICommand{
 	@Override
 	public void executar() {
 		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public boolean executar(Procedure pProcedure) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 }

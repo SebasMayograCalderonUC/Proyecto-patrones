@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.cenfotec.grupo4.interfaces.IStatus;
-import com.cenfotec.grupo4.interfaces.users.StatusActive;
-import com.cenfotec.grupo4.interfaces.users.StatusFinalized;
+import com.cenfotec.grupo4.interfaces.use.StatusActive;
+import com.cenfotec.grupo4.interfaces.use.StatusFinalized;
 import com.couchbase.client.core.annotations.InterfaceAudience.Public;
 
 import org.codehaus.jackson.annotate.*;
