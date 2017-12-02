@@ -5,8 +5,8 @@ import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
-import com.cenfotec.grupo4.interfaces.users.StatusActive;
-import com.cenfotec.grupo4.interfaces.users.StatusFinalized;
+import com.cenfotec.grupo4.interfaces.use.StatusActive;
+import com.cenfotec.grupo4.interfaces.use.StatusFinalized;
 
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME,
