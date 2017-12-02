@@ -1,4 +1,4 @@
-package com.cenfotec.grupo4.interfaces.users;
+package com.cenfotec.grupo4.interfaces.use;
 
 import org.codehaus.jackson.annotate.JsonTypeName;
 
