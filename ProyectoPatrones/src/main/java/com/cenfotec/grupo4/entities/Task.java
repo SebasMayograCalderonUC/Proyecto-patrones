@@ -3,6 +3,7 @@ package com.cenfotec.grupo4.entities;
 import org.codehaus.jackson.annotate.*;
 
 public class Task {
+	
 	@JsonProperty
 	private String description;
 	@JsonProperty
