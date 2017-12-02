@@ -4,7 +4,6 @@ import org.codehaus.jackson.annotate.JsonSubTypes;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
 
 import com.cenfotec.grupo4.entities.Procedure;
-import com.cenfotec.grupo4.entities.Task;
 import com.cenfotec.grupo4.interfaces.users.*;
 
 @JsonTypeInfo(use=JsonTypeInfo.Id.NAME,

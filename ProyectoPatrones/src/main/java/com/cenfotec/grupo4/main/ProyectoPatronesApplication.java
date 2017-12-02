@@ -24,10 +24,10 @@ import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Employee;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
-import com.cenfotec.grupo4.utils.EncryptManagerSymetric;
-import com.cenfotec.grupo4.utils.Encryptor;
 import com.cenfotec.grupo4.utils.Gestor;
 import com.cenfotec.grupo4.utils.JsonManager;
+import com.cenfotec.grupo4.utils.encrypt.EncryptManagerSymetric;
+import com.cenfotec.grupo4.utils.encrypt.Encryptor;
 
 import org.apache.bsf.util.event.adapters.java_awt_event_ActionAdapter;
 import org.codehaus.*;

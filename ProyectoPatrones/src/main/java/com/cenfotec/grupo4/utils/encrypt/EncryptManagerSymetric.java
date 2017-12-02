@@ -1,4 +1,4 @@
-package com.cenfotec.grupo4.utils;
+package com.cenfotec.grupo4.utils.encrypt;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;

@@ -1,6 +1,7 @@
-package com.cenfotec.grupo4.utils;
+package com.cenfotec.grupo4.utils.encrypt;
 
 import com.cenfotec.grupo4.interfaces.IEncryptManager;
+import com.cenfotec.grupo4.utils.SavingType;
 
 public class EncryptManagerFactory {
 	public static IEncryptManager EncryptorFactory(SavingType type) {

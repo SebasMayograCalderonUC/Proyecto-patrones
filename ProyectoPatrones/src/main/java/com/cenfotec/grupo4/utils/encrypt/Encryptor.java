@@ -1,4 +1,4 @@
-package com.cenfotec.grupo4.utils;
+package com.cenfotec.grupo4.utils.encrypt;
 
 import java.io.IOException;
 
@@ -9,6 +9,8 @@ import org.codehaus.jackson.map.JsonMappingException;
 import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.interfaces.IEncryptManager;
+import com.cenfotec.grupo4.utils.JsonManager;
+import com.cenfotec.grupo4.utils.SavingType;
 
 public class Encryptor {
 	private static Encryptor instance;
