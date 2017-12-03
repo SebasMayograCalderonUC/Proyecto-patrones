@@ -1,5 +1,7 @@
 package com.cenfotec.grupo4.interfaces.use;
 
+import java.util.Date;
+
 import org.codehaus.jackson.annotate.JsonTypeName;
 
 import com.cenfotec.grupo4.entities.Procedure;
@@ -55,6 +57,7 @@ public class StatusActive implements IStatus{
 	public boolean CheckTask(Procedure procedure) {
 		if(procedure.getCurrentTask().getNextTask()==null) {
 			procedure.setActualStatus(procedure.getFinalizedStatus());
+			procedure.setFinalDate(new Date().toString());
 			return false;
 		}
 		return true;

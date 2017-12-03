@@ -21,6 +21,14 @@ public class JsonManager {
 		return objectMapper.writeValueAsString(object);
 	}
 	
+	public Department createDepartmentFromJson(String json) throws JsonParseException, JsonMappingException, IOException {
+		return objectMapper.readValue(json, Department.class);
+	}
+	
+	public String createJsonFromDepartment(Department object) throws JsonGenerationException, JsonMappingException, IOException {
+		return objectMapper.writeValueAsString(object);
+	}
+	
 	public Procedure createProcedureFromJsonString(String json) throws JsonParseException, JsonMappingException, IOException {
 		return objectMapper.readValue(json, Procedure.class);
 	}

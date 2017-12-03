@@ -5,13 +5,15 @@ import org.codehaus.jackson.annotate.*;
 public class Task {
 	
 	@JsonProperty
-	private Task nextTask;
-	@JsonProperty
 	private String description;
+	
+	@JsonProperty
+	private Task nextTask;
 	
 	public Task() {
 		
 	}
+	
 	public Task(Task nextTask, String description) {
 		this.nextTask=nextTask;
 		this.description=description;
@@ -28,15 +30,19 @@ public class Task {
 	public Task getNextTask() {
 		return nextTask;
 	}
+	
 	public void setNextTask(Task nextTask) {
 		this.nextTask = nextTask;
 	}
+	
 	public String getDescription() {
 		return description;
 	}
+	
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	public String toString() {
 		String info ="---------------\n";
 		info+="Desc: "+description+"\n";
