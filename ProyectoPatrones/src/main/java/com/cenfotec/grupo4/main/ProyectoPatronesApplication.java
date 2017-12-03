@@ -43,12 +43,12 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		SpringApplication  app = new SpringApplication(ProyectoPatronesApplication.class);
-		app.setBannerMode(Banner.Mode.OFF);
+		app.setBannerMode(Banner.Mode.CONSOLE);
 		app.run(args);
 	}
 	
 	public void run(String... args) throws Exception {
-	
+		
     }
 		
 	

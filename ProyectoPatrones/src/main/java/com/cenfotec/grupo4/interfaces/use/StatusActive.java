@@ -53,7 +53,7 @@ public class StatusActive implements IStatus{
 
 	@Override
 	public boolean CheckTask(Procedure procedure) {
-		if(procedure.getCurrentTask().getDeniedTask()==null && procedure.getCurrentTask().getAcceptedTask()==null) {
+		if(procedure.getCurrentTask().getNextTask()==null) {
 			procedure.setActualStatus(procedure.getFinalizedStatus());
 			return false;
 		}

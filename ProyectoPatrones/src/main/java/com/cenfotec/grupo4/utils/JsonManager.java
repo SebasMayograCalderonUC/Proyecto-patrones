@@ -40,6 +40,7 @@ public class JsonManager {
 		File[] jsons= file.listFiles();
 		ArrayList<Department>departments=new ArrayList<Department>();
 		for(int i =0;i<jsons.length;i++) {
+			System.out.print(i);
 			departments.add(objectMapper.readValue(jsons[i], Department.class));
 		}
 		return departments;
