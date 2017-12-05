@@ -48,7 +48,6 @@ public class JsonManager {
 		File[] jsons= file.listFiles();
 		ArrayList<Department>departments=new ArrayList<Department>();
 		for(int i =0;i<jsons.length;i++) {
-			System.out.print(i);
 			departments.add(objectMapper.readValue(jsons[i], Department.class));
 		}
 		return departments;
@@ -60,6 +59,17 @@ public class JsonManager {
 		for(File file:filesTodelete) {
 			file.delete();
 		}
+	}
+	
+	public void restoreFiles() throws JsonParseException, JsonMappingException, IOException{
+		deleteFiles("../data/Department");
+		File dir= new File("../data/Backup");
+		File[] jsons= dir.listFiles();
+		ArrayList<Department>departments=new ArrayList<Department>();
+		for(int i =0;i<jsons.length;i++) {
+			departments.add(objectMapper.readValue(jsons[i], Department.class));
+		}
+		saveDempartments(departments);	
 	}
 	
 	public void saveDempartments(ArrayList<Department>departments) throws JsonGenerationException, JsonMappingException, IOException {
