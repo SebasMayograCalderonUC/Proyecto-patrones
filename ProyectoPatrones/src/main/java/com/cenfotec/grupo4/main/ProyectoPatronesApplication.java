@@ -39,7 +39,7 @@ import ch.qos.logback.core.net.ObjectWriter;
 
 @SpringBootApplication
 public class ProyectoPatronesApplication implements CommandLineRunner {
-	
+
 	public static void main(String[] args) {
 		SpringApplication  app = new SpringApplication(ProyectoPatronesApplication.class);
 		app.setBannerMode(Banner.Mode.CONSOLE);
@@ -47,11 +47,11 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 	@Autowired
 	private Environment env;
-	
+
 	public void run(String... args) throws Exception {
-		System.out.println(env.getProperty("Encrypt.symetricRoot"));
+			
     }
-		
-	
-	 
+
+
+
 }
