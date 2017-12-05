@@ -9,15 +9,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import java.text.SimpleDateFormat;
->>>>>>> jose
-=======
+
 import java.text.SimpleDateFormat;
 
->>>>>>> master
+import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -68,135 +64,12 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	private Environment env;
 
 	public void run(String... args) throws Exception {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> master
-		JsonManager jsonManager=new JsonManager();
-		jsonManager.saveDempartments(test());
-		System.out.println("io e finito");
-		
-<<<<<<< HEAD
-=======
-		ArrayList<Procedure> procedures=new ArrayList<>();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date=new Date();
-		dateFormat.format(date);
-		Procedure procedureScolarshipOne=new Procedure(date.toString(),null, crearTask("Daniela villalobos"),
-				"Procedimiento de beca Daniela villalobos Hasbum");
-		procedures.add(procedureScolarshipOne);
-		Procedure procedureScolarshipTwo=new Procedure(date.toString(),null, crearTask("Alejandro Mayorga"), 
-				"Procedimiento de beca Alejandro Mayorga");
-		procedures.add(procedureScolarshipTwo);
-		Procedure procedureScolarshipThree=new Procedure(date.toString(),null, crearTask("Sebastian Mayorga"), 
-				"Procedimiento de beca Sebastian Mayorga");
-		procedures.add(procedureScolarshipThree);
-		ArrayList<Employee>employees=new ArrayList<>();
-		Employee sophie=new Employee("Sophia villalobos", "Decanatura");
-		Employee Ale=new Employee("Ale villalobos", "Decanatura");
-		employees.add(Ale);
-		employees.add(sophie);
-		Department department=new Department("llaveA", "llaveB", null, procedures, employees, "departamento decanatura");
-		
-	
-		Ale.obtainProcedure();
-		sophie.obtainProcedure();	
-		JsonManager jsonManager=new JsonManager();
-		String json=jsonManager.createJsonFromDepartment(department);
-		Department department2=jsonManager.createDepartmentFromJson(json);
-		
-		System.out.println(department2.getEmployees().get(0).getTreatedProcedures().get(0).getProcedureName());
->>>>>>> jose
-		
-=======
->>>>>>> master
-		
-		
-	
-    }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-	public Task crearTask(String nombre) {
-		Task taskThirdSolarchip=new Task();
-		taskThirdSolarchip.setDescription("Aprobacion de beca");
-		Task taskSecondSolarchip=new Task(taskThirdSolarchip,"Aceptacion de requisitos");
-		Task taskFirstSolarchip =new Task(taskSecondSolarchip,"Tarea inicial Beca "+nombre);
-		return taskFirstSolarchip;
-	}
-
->>>>>>> master
-	public ArrayList<Department> test() {
-		String [] empleados=new String[3];
-		String[] estudiantes=new String[3];
-		empleados[0]="Daniela Vlillalobos";
-		empleados[1]="Sophia Calderon";
-		empleados[2]="Jimena Lobo";
-		
-		estudiantes[0]="Sebastian Mayorga";
-		estudiantes[0]="Jimena Castro";
-		estudiantes[0]="Alejandro Carvaja;";
-		ArrayList<Department>departments=new ArrayList<>();
-		departments.add(createDepartments(empleados, estudiantes, "Registro", "Matricula"));
-		empleados[0]="Pablo Jimenez";
-		empleados[1]="Valeria Merino";
-		empleados[2]="Alex Mayorga";
-<<<<<<< HEAD
-=======
-	public Task crearTask(String nombre) {
-		Task taskThirdSolarchip=new Task();
-		taskThirdSolarchip.setDescription("Aprobacion de beca");
-		Task taskSecondSolarchip=new Task(taskThirdSolarchip,"Aceptacion de requisitos");
-		Task taskFirstSolarchip =new Task(taskSecondSolarchip,"Tarea inicial Beca "+nombre);
-		return taskFirstSolarchip;
-	}
->>>>>>> jose
-		
-=======
-
->>>>>>> master
-		estudiantes[0]="Sebastian Corrales";
-		estudiantes[0]="Alvaro Cordero";
-		estudiantes[0]="Antonio Smith";
-		departments.add(createDepartments(empleados, estudiantes, "Decanatura", "Convalidacion Calculo"));
-		return departments;
-		
-	}
-	public ArrayList<Employee> createEmployees(String[] nombres,String job){
-		ArrayList<Employee>employees=new ArrayList<>();
-		for(String nombre:nombres) {
-			employees.add(new Employee(nombre,job));
-		}
-		return employees;
-	}
-	public Task createTask(String name,String taskname) {
-		Task task2=new Task();
-		task2.setDescription("Aprobacion de de"+taskname+" :"+name);
-		Task task=new Task(task2,"Solicitud de"+taskname+" :"+name);
-		return task;
-	}
-	
-	public Procedure createProcedure(String name,String Taskname) {
-		Task task=createTask(name,Taskname);
-		Date date=new Date();
-		Procedure procedure= new Procedure(date.toString(), null, task,"Matricula "+name);
-		return procedure;
-	}
-	public Department createDepartments(String[] empleados,String[] estudiantes, String nombreDep,String taskName){
-		ArrayList<Employee> employees=createEmployees(empleados, nombreDep);
-		ArrayList<Procedure>procedures=new ArrayList<>();
-		for(String estu:estudiantes) {
-			procedures.add(createProcedure(estu,taskName));
-		}
-		Department department=new Department(nombreDep+"_key", nombreDep+"_-_key", null, procedures, null, nombreDep);
-		department.setEmployees(employees);
-		return department;
-	}
 
     }
+
+	
+ }
 
 
 

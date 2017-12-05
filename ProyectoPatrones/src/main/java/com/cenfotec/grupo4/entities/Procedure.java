@@ -79,15 +79,8 @@ public class Procedure {
 		return finalDate;
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	public void setFinalDate(String	finalDate) {
-=======
-	public void setFinalDate(String finalDate) {
->>>>>>> jose
-=======
-	public void setFinalDate(String	finalDate) {
->>>>>>> master
+
 		this.finalDate = finalDate;
 	}
 
