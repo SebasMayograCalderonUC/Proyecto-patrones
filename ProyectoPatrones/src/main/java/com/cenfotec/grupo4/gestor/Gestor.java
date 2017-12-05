@@ -37,7 +37,7 @@ public class Gestor {
 	public static Employee crearEmpleado(String employeeFullName, String job) {
 		return new Employee(employeeFullName,job);
 	}
-	public static Procedure crearCaso(Date startingDate,Date finalDate,Task task,String procedureName) {
+	public static Procedure crearCaso(String startingDate,String finalDate,Task task,String procedureName) {
 		return new Procedure(startingDate,finalDate,task,procedureName);	
 	}
 	public static Task crearTarea(String description,Task accepted,Task denied) {

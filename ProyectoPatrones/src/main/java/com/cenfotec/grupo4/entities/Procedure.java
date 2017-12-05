@@ -79,11 +79,7 @@ public class Procedure {
 		return finalDate;
 	}
 
-<<<<<<< HEAD
-	public void setFinalDate(String finalDate) {
-=======
 	public void setFinalDate(String	finalDate) {
->>>>>>> master
 		this.finalDate = finalDate;
 	}
 
