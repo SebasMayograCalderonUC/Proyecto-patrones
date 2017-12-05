@@ -26,6 +26,7 @@ public class Employee {
 		this.job = job;
 		cantEmployees++;
 		this.idEmployee="EMP-"+cantEmployees;
+		this.treatedProcedures=new ArrayList<>();
 	}
 
 	public static int getCantEmployees() {
@@ -63,6 +64,7 @@ public class Employee {
 	public ArrayList<Procedure> getTreatedProcedures(){
 		return treatedProcedures;
 	}
+	
 	public void setTreatedProcedures(ArrayList<Procedure> treatedProcedures) {
 		this.treatedProcedures=treatedProcedures;
 	}

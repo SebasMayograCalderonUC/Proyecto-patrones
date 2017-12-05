@@ -9,6 +9,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
+<<<<<<< HEAD
+=======
+import java.text.SimpleDateFormat;
+>>>>>>> jose
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -37,6 +41,7 @@ import com.cenfotec.grupo4.utils.encrypt.Encryptor;
 
 import com.cenfotec.grupo4.utils.*;
 import org.apache.bsf.util.event.adapters.java_awt_event_ActionAdapter;
+
 import org.codehaus.*;
 
 
@@ -45,7 +50,6 @@ import org.springframework.boot.autoconfigure.jackson.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.annotation.CreatedBy;
 
-import ch.qos.logback.core.net.ObjectWriter;
 
 @SpringBootApplication
 public class ProyectoPatronesApplication implements CommandLineRunner {
@@ -59,6 +63,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	private Environment env;
 
 	public void run(String... args) throws Exception {
+<<<<<<< HEAD
 <<<<<<< HEAD
 		JsonManager jsonManager=new JsonManager();
 		jsonManager.saveDempartments(test());

@@ -25,6 +25,7 @@ public class Department {
 			ArrayList<Procedure> currentProcedures,ArrayList<Employee> employees,String departmentName) {
 		cantDep++;
 		this.idDep="DEP-"+cantDep;
+		this.setEmployees(employees);
 		this.publicKey = publicKey;
 		this.privatekey = privatekey;
 		this.recivedProcedure = recivedProcedures;
