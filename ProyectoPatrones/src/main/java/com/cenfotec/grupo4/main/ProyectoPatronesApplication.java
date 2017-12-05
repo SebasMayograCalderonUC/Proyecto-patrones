@@ -119,6 +119,10 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		department.setEmployees(employees);
 		return department;
 	}
+=======
+			
+    }
+>>>>>>> Marvin
 
 
 
