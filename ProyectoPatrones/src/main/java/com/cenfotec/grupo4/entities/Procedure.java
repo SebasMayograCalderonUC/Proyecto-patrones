@@ -80,10 +80,14 @@ public class Procedure {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void setFinalDate(String	finalDate) {
 =======
 	public void setFinalDate(String finalDate) {
 >>>>>>> jose
+=======
+	public void setFinalDate(String	finalDate) {
+>>>>>>> master
 		this.finalDate = finalDate;
 	}
 

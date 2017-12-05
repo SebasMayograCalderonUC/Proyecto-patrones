@@ -10,9 +10,14 @@ import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.text.SimpleDateFormat;
 >>>>>>> jose
+=======
+import java.text.SimpleDateFormat;
+
+>>>>>>> master
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -65,10 +70,15 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 		JsonManager jsonManager=new JsonManager();
 		jsonManager.saveDempartments(test());
 		System.out.println("io e finito");
 		
+<<<<<<< HEAD
 =======
 		ArrayList<Procedure> procedures=new ArrayList<>();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -100,11 +110,25 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		System.out.println(department2.getEmployees().get(0).getTreatedProcedures().get(0).getProcedureName());
 >>>>>>> jose
 		
+=======
+>>>>>>> master
 		
 		
 	
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+	public Task crearTask(String nombre) {
+		Task taskThirdSolarchip=new Task();
+		taskThirdSolarchip.setDescription("Aprobacion de beca");
+		Task taskSecondSolarchip=new Task(taskThirdSolarchip,"Aceptacion de requisitos");
+		Task taskFirstSolarchip =new Task(taskSecondSolarchip,"Tarea inicial Beca "+nombre);
+		return taskFirstSolarchip;
+	}
+
+>>>>>>> master
 	public ArrayList<Department> test() {
 		String [] empleados=new String[3];
 		String[] estudiantes=new String[3];
@@ -120,6 +144,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		empleados[0]="Pablo Jimenez";
 		empleados[1]="Valeria Merino";
 		empleados[2]="Alex Mayorga";
+<<<<<<< HEAD
 =======
 	public Task crearTask(String nombre) {
 		Task taskThirdSolarchip=new Task();
@@ -130,6 +155,9 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 >>>>>>> jose
 		
+=======
+
+>>>>>>> master
 		estudiantes[0]="Sebastian Corrales";
 		estudiantes[0]="Alvaro Cordero";
 		estudiantes[0]="Antonio Smith";
@@ -167,14 +195,11 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		department.setEmployees(employees);
 		return department;
 	}
-=======
-			
+
     }
->>>>>>> Marvin
 
 
 
-}
 
 
 
