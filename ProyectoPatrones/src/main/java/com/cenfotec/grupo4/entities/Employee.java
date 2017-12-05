@@ -14,6 +14,8 @@ public class Employee {
 	private String job;
 	@JsonProperty
 	private ArrayList<Procedure> treatedProcedures;
+	@JsonIgnore
+	private Department department;
 	
 	public Employee() {
 		// TODO Auto-generated constructor stub
@@ -24,7 +26,6 @@ public class Employee {
 		this.job = job;
 		cantEmployees++;
 		this.idEmployee="EMP-"+cantEmployees;
-		this.treatedProcedures=null;
 	}
 
 	public static int getCantEmployees() {
@@ -65,6 +66,21 @@ public class Employee {
 	public void setTreatedProcedures(ArrayList<Procedure> treatedProcedures) {
 		this.treatedProcedures=treatedProcedures;
 	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	
+	public void obtainProcedure( ) {
+		this.treatedProcedures.add(this.department.getCurrentProcedures().get(0));
+		this.department.getCurrentProcedures().remove(0);
+		
+	}
+	
 }
 
 

@@ -25,7 +25,6 @@ public class Department {
 			ArrayList<Procedure> currentProcedures,ArrayList<Employee> employees,String departmentName) {
 		cantDep++;
 		this.idDep="DEP-"+cantDep;
-		this.employees=employees;
 		this.publicKey = publicKey;
 		this.privatekey = privatekey;
 		this.recivedProcedure = recivedProcedures;
@@ -91,6 +90,9 @@ public class Department {
 	
 	public void setEmployees(ArrayList<Employee> employees) {
 		this.employees = employees;
+		for(Employee employee: this.employees) {
+			employee.setDepartment(this);
+		}
 	}
 
 	public void recivedProcedure(String procedureName) {

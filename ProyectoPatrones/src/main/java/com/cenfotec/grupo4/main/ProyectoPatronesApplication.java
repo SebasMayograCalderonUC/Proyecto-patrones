@@ -64,8 +64,42 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		jsonManager.saveDempartments(test());
 		System.out.println("io e finito");
 		
+=======
+		ArrayList<Procedure> procedures=new ArrayList<>();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date=new Date();
+		dateFormat.format(date);
+		Procedure procedureScolarshipOne=new Procedure(date.toString(),null, crearTask("Daniela villalobos"),
+				"Procedimiento de beca Daniela villalobos Hasbum");
+		procedures.add(procedureScolarshipOne);
+		Procedure procedureScolarshipTwo=new Procedure(date.toString(),null, crearTask("Alejandro Mayorga"), 
+				"Procedimiento de beca Alejandro Mayorga");
+		procedures.add(procedureScolarshipTwo);
+		Procedure procedureScolarshipThree=new Procedure(date.toString(),null, crearTask("Sebastian Mayorga"), 
+				"Procedimiento de beca Sebastian Mayorga");
+		procedures.add(procedureScolarshipThree);
+		ArrayList<Employee>employees=new ArrayList<>();
+		Employee sophie=new Employee("Sophia villalobos", "Decanatura");
+		Employee Ale=new Employee("Ale villalobos", "Decanatura");
+		employees.add(Ale);
+		employees.add(sophie);
+		Department department=new Department("llaveA", "llaveB", null, procedures, employees, "departamento decanatura");
 		
+	
+		Ale.obtainProcedure();
+		sophie.obtainProcedure();	
+		JsonManager jsonManager=new JsonManager();
+		String json=jsonManager.createJsonFromDepartment(department);
+		Department department2=jsonManager.createDepartmentFromJson(json);
+		
+		System.out.println(department2.getEmployees().get(0).getTreatedProcedures().get(0).getProcedureName());
+>>>>>>> jose
+		
+		
+		
+	
     }
+<<<<<<< HEAD
 	public ArrayList<Department> test() {
 		String [] empleados=new String[3];
 		String[] estudiantes=new String[3];
@@ -81,6 +115,15 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		empleados[0]="Pablo Jimenez";
 		empleados[1]="Valeria Merino";
 		empleados[2]="Alex Mayorga";
+=======
+	public Task crearTask(String nombre) {
+		Task taskThirdSolarchip=new Task();
+		taskThirdSolarchip.setDescription("Aprobacion de beca");
+		Task taskSecondSolarchip=new Task(taskThirdSolarchip,"Aceptacion de requisitos");
+		Task taskFirstSolarchip =new Task(taskSecondSolarchip,"Tarea inicial Beca "+nombre);
+		return taskFirstSolarchip;
+	}
+>>>>>>> jose
 		
 		estudiantes[0]="Sebastian Corrales";
 		estudiantes[0]="Alvaro Cordero";
