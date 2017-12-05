@@ -59,6 +59,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	private Environment env;
 
 	public void run(String... args) throws Exception {
+<<<<<<< HEAD
 		JsonManager jsonManager=new JsonManager();
 		jsonManager.saveDempartments(test());
 		System.out.println("io e finito");
