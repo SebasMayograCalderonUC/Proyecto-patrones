@@ -9,6 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
 import java.text.DateFormat;
+
+import java.text.SimpleDateFormat;
+
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
@@ -61,6 +64,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 
 	public void run(String... args) throws Exception {
 
+<<<<<<< HEAD
 		
     }
 	public void showMenu() {
@@ -88,6 +92,13 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	
 
 }
+=======
+
+    }
+
+	
+ }
+>>>>>>> fd39396360116a7a1c5dcad71da70ec96a77515f
 
 
 

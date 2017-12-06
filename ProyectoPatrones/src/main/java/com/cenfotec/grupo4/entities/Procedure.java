@@ -80,6 +80,7 @@ public class Procedure {
 	}
 
 	public void setFinalDate(String	finalDate) {
+
 		this.finalDate = finalDate;
 	}
 
