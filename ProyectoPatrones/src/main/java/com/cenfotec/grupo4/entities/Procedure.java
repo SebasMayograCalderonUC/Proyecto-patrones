@@ -20,9 +20,9 @@ public class Procedure {
 	@JsonProperty
 	private String idProcedure;
 	@JsonProperty
-	private Date startingDate;
+	private String startingDate;
 	@JsonProperty
-	private Date finalDate;
+	private String finalDate;
 	@JsonProperty
 	private Task currentTask;
 	@JsonProperty
@@ -38,7 +38,7 @@ public class Procedure {
 		this.actualStatus=activeStatus;
 	}
 	
-	public Procedure(Date startingDate,Date finalDate,Task task,String procedureName) {
+	public Procedure(String startingDate,String finalDate,Task task,String procedureName) {
 		cantProcedures++;
 		this.idProcedure="PRO-"+cantProcedures;
 		this.startingDate=startingDate;
@@ -67,19 +67,19 @@ public class Procedure {
 		this.idProcedure = idProcedure;
 	}
 
-	public Date getStartingDate() {
+	public String getStartingDate() {
 		return startingDate;
 	}
 
-	public void setStartingDate(Date startingDate) {
+	public void setStartingDate(String startingDate) {
 		this.startingDate = startingDate;
 	}
 
-	public Date getFinalDate() {
+	public String getFinalDate() {
 		return finalDate;
 	}
 
-	public void setFinalDate(Date finalDate) {
+	public void setFinalDate(String	finalDate) {
 		this.finalDate = finalDate;
 	}
 

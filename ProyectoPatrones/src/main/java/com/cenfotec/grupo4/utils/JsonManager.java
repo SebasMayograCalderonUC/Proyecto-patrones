@@ -21,6 +21,14 @@ public class JsonManager {
 		return objectMapper.writeValueAsString(object);
 	}
 	
+	public Department createDepartmentFromJson(String json) throws JsonParseException, JsonMappingException, IOException {
+		return objectMapper.readValue(json, Department.class);
+	}
+	
+	public String createJsonFromDepartment(Department object) throws JsonGenerationException, JsonMappingException, IOException {
+		return objectMapper.writeValueAsString(object);
+	}
+	
 	public Procedure createProcedureFromJsonString(String json) throws JsonParseException, JsonMappingException, IOException {
 		return objectMapper.readValue(json, Procedure.class);
 	}
@@ -51,6 +59,17 @@ public class JsonManager {
 		for(File file:filesTodelete) {
 			file.delete();
 		}
+	}
+	
+	public void restoreFiles() throws JsonParseException, JsonMappingException, IOException{
+		deleteFiles("../data/Department");
+		File dir= new File("../data/Backup");
+		File[] jsons= dir.listFiles();
+		ArrayList<Department>departments=new ArrayList<Department>();
+		for(int i =0;i<jsons.length;i++) {
+			departments.add(objectMapper.readValue(jsons[i], Department.class));
+		}
+		saveDempartments(departments);	
 	}
 	
 	public void saveDempartments(ArrayList<Department>departments) throws JsonGenerationException, JsonMappingException, IOException {
