@@ -65,9 +65,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}
 		return false;
 	}
-	public void createProcedure() {
-		String procedureNam;
-	}
 	
 	public static int GetInteger(int limit) {
 	   int  option ;
