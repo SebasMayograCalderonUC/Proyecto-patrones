@@ -1,10 +1,12 @@
 package com.cenfotec.grupo4.main;
 
 import java.awt.Point;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
@@ -56,49 +58,94 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication  app = new SpringApplication(ProyectoPatronesApplication.class);
-		app.setBannerMode(Banner.Mode.CONSOLE);
+		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
 	}
 	@Autowired
 	private Environment env;
-
+	@Autowired
+	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static int CantOptions = 4;
 	public void run(String... args) throws Exception {
+		System.out.println("\n");
+		System.out.println("\n");
+		ShowMessage("Controlador de Tramite  0.1");
+        int option;
+		do {
+        	ShowMenu();
+        	option = GetInteger(CantOptions);
+        }while(!execMenu(option));
+		System.out.println("\n");
+		System.out.println("\n");
 
-<<<<<<< HEAD
-		
     }
-	public void showMenu() {
-		System.out.println("Crear procedimiento ->1");
-		System.out.println("Obtener procedimiento ->2");
-		System.out.println("Enviar procedimiento ->3");
-		System.out.println("Salir ->4");
-	}
-	public void execMenu(int opcion) {
-		switch (Action.values()[opcion-1]) {
-		case CreateProcedure:
+	public boolean execMenu(int opcion) {
+		try {
+			switch (Action.values()[opcion-1]) {
+			case CreateProcedure:
+				
+				break;
+			case ObtainProcedure:
+				
+				break;
+			case SendProcedure:
 			
 			break;
-
-		default:
+			case Exit:
+				
 			break;
+
+			default:
+				ShowMessage("Opcion invalida intente denuevo");
+			}
+			
+		} catch (Exception e) {
+			ShowMessage("Opcion invalida intente denuevo");
 		}
+		
+		return false;
 	}
 	public void createProcedure() {
 		String procedureNam;
 	}
-	
-	
-
-	
-
+	public static int GetInteger(int limit) {
+	   int  option ;
+	   do {   
+		   try {
+			   option = Integer.parseInt(br.readLine());
+			   if(!ValidateOption(option,limit)) {
+				//throw new Exception("error");
+			   }
+			   return option;
+		   }catch (Exception e) {
+			CommunicationManager communicationManager= new CommunicationManager();
+			communicationManager.ShowMessageLine("Error try again: ");
+		}	   
+	   }while(true);
+   }
+   public static boolean ValidateOption(int option,int limit) {
+	   if(option>0 && option<=limit) {
+		   return true;
+	   }else {
+		   return false;
+	   }
+   }
+   public static void ShowMenu() {
+	   CommunicationManager communicationManager=new CommunicationManager();
+	   communicationManager.ShowMenu();
+   }
+   
+   public static void ShowMessage(String message) {
+	   CommunicationManager communicationManager=new CommunicationManager();
+	   communicationManager.ShowMessage(message);
+   }
 }
-=======
 
-    }
+
+ 
 
 	
- }
->>>>>>> fd39396360116a7a1c5dcad71da70ec96a77515f
+
 
 
 
