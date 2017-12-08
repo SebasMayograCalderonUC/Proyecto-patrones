@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.cenfotec.grupo4.gestor.Action;
 import com.cenfotec.grupo4.gestor.GestorProcess;
+import com.cenfotec.grupo4.utils.CaledarCustom;
 import com.cenfotec.grupo4.utils.GestorCreate;
 import org.springframework.core.env.Environment;
 
@@ -31,6 +32,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		ShowMessage("\n");
+		ShowMessage(new CaledarCustom().getFormattedDate());
 		ShowMessage("\n");
 		ShowMessage("Controlador de Tramite  0.1");
         int option;
