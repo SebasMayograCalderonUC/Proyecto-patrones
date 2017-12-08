@@ -67,23 +67,22 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	@Autowired
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public void run(String... args) throws Exception {
-		System.out.println("\n");
-		System.out.println("\n");
+		ShowMessage("\n");
+		ShowMessage("\n");
 		ShowMessage("Controlador de Tramite  0.1");
         int option;
 		do {
         	ShowMenu();
         	option = GetInteger(CommunicationManager.CantOptions);
         }while(!execMenu(option));
-		System.out.println("\n");
-		System.out.println("\n");
-
+		ShowMessage("\n");
+		ShowMessage("\n");
     }
 	public boolean execMenu(int opcion) {
 		try {
 			switch (Action.values()[opcion-1]) {
 			case CreateProcedure:
-				gestor.
+				
 				break;
 			case ObtainProcedure:
 				
@@ -98,14 +97,11 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			default:
 				ShowMessage("Opcion invalida intente denuevo");
 			}
-			
 		} catch (Exception e) {
 			ShowMessage("Opcion invalida intente denuevo");
 		}
-		
 		return false;
 	}
-
 	public static int GetInteger(int limit) {
 	   int  option ;
 	   do {   
@@ -132,7 +128,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	   CommunicationManager communicationManager=new CommunicationManager();
 	   communicationManager.ShowMenu();
    }
-   
    public static void ShowMessage(String message) {
 	   CommunicationManager communicationManager=new CommunicationManager();
 	   communicationManager.ShowMessage(message);
