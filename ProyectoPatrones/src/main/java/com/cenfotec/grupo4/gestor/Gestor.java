@@ -18,6 +18,19 @@ import org.codehaus.jackson.map.ObjectMapper;
 public class Gestor {
 	
 	private JsonManager jason;
+	private static Gestor instance;
+	private void Gestor() {}
+	public static Gestor getInstance() {
+		
+		if(instance != null) {
+			synchronized (instance) {
+				if(instance == null) {
+					instance = new Gestor();
+				}	
+			}
+		}
+		return instance;
+	}
 	private ArrayList<Employee> employees;
 	
 	//Metodos para acceder al Json

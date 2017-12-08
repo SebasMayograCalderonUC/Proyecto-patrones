@@ -55,8 +55,9 @@ import org.springframework.data.annotation.CreatedBy;
 
 @SpringBootApplication
 public class ProyectoPatronesApplication implements CommandLineRunner {
-
+	private static Gestor  gestor;
 	public static void main(String[] args) {
+		gestor = Gestor.getInstance();
 		SpringApplication  app = new SpringApplication(ProyectoPatronesApplication.class);
 		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
@@ -65,7 +66,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	private Environment env;
 	@Autowired
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	public static int CantOptions = 4;
 	public void run(String... args) throws Exception {
 		System.out.println("\n");
 		System.out.println("\n");
@@ -73,7 +73,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
         int option;
 		do {
         	ShowMenu();
-        	option = GetInteger(CantOptions);
+        	option = GetInteger(CommunicationManager.CantOptions);
         }while(!execMenu(option));
 		System.out.println("\n");
 		System.out.println("\n");
@@ -83,17 +83,17 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		try {
 			switch (Action.values()[opcion-1]) {
 			case CreateProcedure:
-				
+				gestor.
 				break;
 			case ObtainProcedure:
 				
 				break;
 			case SendProcedure:
-			
-			break;
+				
+				break;
 			case Exit:
 				
-			break;
+				break;
 
 			default:
 				ShowMessage("Opcion invalida intente denuevo");
@@ -105,9 +105,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		
 		return false;
 	}
-	public void createProcedure() {
-		String procedureNam;
-	}
+
 	public static int GetInteger(int limit) {
 	   int  option ;
 	   do {   

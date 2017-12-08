@@ -1,11 +1,7 @@
 package com.cenfotec.grupo4.main;
 
 public class CommunicationManager {
-	
-    public void ShowJavamonInfo() {
-    	 
-    }
-    
+    public static int CantOptions = 4;
     public void ShowMenu() {
  	   	ShowMessage("Select action");
  	   	ShowMessage("1. Crear procedimiento");
