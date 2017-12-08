@@ -8,14 +8,14 @@ import com.mongodb.client.MongoDatabase;
 public class MongoAccess {
 
 	@Autowired
-	private String conectionString = "mongodb://admin:abcd1234@ds133876.mlab.com:33876/patrones"; 
+	private static String conectionString = "mongodb://admin:abcd1234@ds133876.mlab.com:33876/patrones"; 
 	private static MongoDatabase instance;
 	
 	private MongoAccess() {
 		
 	}
 	
-	public MongoDatabase getConection() {
+	public static MongoDatabase getConection() {
 		
 		if (instance == null) {
 			MongoClientURI uri = new MongoClientURI(conectionString);
