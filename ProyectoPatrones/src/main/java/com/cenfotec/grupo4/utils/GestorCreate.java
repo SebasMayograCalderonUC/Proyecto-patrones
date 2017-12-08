@@ -4,20 +4,30 @@ import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Employee;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class Gestor {
+public class GestorCreate {
 
 	private static Department departamento = new Department();
 	private static Employee empleado = new Employee();
 	private static  Procedure procedimento;
 	private static Task caso = new Task();
 	private static ObjectMapper mapeador = new ObjectMapper();
-	
+	private static GestorCreate instance;
+	private void Gestor() {}
+	public static GestorCreate getInstance() {
+		if(instance != null) {
+			synchronized (instance) {
+				if(instance == null) {
+					instance = new GestorCreate();
+				}	
+			}
+		}
+		return instance;
+	}
 	public static Task crearTarea() {
 		return caso;
 	}

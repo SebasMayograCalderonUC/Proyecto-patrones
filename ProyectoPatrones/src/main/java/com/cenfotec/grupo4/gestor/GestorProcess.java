@@ -15,9 +15,22 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class Gestor {
+public class GestorProcess {
 	
 	private JsonManager jason;
+	private static GestorProcess instance;
+	private void Gestor() {}
+	public static GestorProcess getInstance() {
+		
+		if(instance != null) {
+			synchronized (instance) {
+				if(instance == null) {
+					instance = new GestorProcess();
+				}	
+			}
+		}
+		return instance;
+	}
 	private ArrayList<Employee> employees;
 	
 	//Metodos para acceder al Json
