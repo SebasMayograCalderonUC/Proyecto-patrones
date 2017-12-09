@@ -7,7 +7,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-<<<<<<< HEAD
+
 
 import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Employee;
@@ -27,12 +27,11 @@ import org.apache.bsf.util.event.adapters.java_awt_event_ActionAdapter;
 
 import org.codehaus.*;
 import org.springframework.boot.autoconfigure.jackson.*;
-=======
+
 import com.cenfotec.grupo4.gestor.Action;
 import com.cenfotec.grupo4.gestor.GestorProcess;
 import com.cenfotec.grupo4.utils.CaledarCustom;
-import com.cenfotec.grupo4.utils.GestorCreate;
->>>>>>> 7080226515e93682625620068434144f4c2a300c
+
 import org.springframework.core.env.Environment;
 
 
