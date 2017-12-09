@@ -38,9 +38,9 @@ import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
 
 import com.cenfotec.grupo4.gestor.GestorProcess;
+import com.cenfotec.grupo4.interfaces.IGestor;
 import com.cenfotec.grupo4.gestor.Action;
-import com.cenfotec.grupo4.utils.GestorCreate;
-import com.cenfotec.grupo4.utils.JsonManager;
+import com.cenfotec.grupo4.gestor.GestorCreate;
 import com.cenfotec.grupo4.utils.encrypt.EncryptManagerSymetric;
 import com.cenfotec.grupo4.utils.encrypt.Encryptor;
 
@@ -56,19 +56,20 @@ import org.springframework.data.annotation.CreatedBy;
 
 @SpringBootApplication
 public class ProyectoPatronesApplication implements CommandLineRunner {
-	private static GestorProcess  gestorProcess;
-	private static GestorCreate  gestorCreate;
+	
+	private static IGestor gestorProcess;
+	private static IGestor gestorCreate;
+	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	
 	public static void main(String[] args) {
-		gestorProcess = GestorProcess.getInstance();
-		gestorCreate = GestorCreate.getInstance();
+		gestorProcess = new GestorProcess();
+		gestorCreate = new GestorCreate();
 		SpringApplication  app = new SpringApplication(ProyectoPatronesApplication.class);
 		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
 	}
-	@Autowired
-	private Environment env;
-	@Autowired
-	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+	
 	public void run(String... args) throws Exception {
 		ShowMessage("\n");
 		ShowMessage("\n");
@@ -81,6 +82,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		ShowMessage("\n");
 		ShowMessage("\n");
     }
+	
 	public boolean execMenu(int opcion) {
 		try {
 			switch (Action.values()[opcion-1]) {

@@ -1,6 +1,7 @@
 package com.cenfotec.grupo4.entities;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -127,6 +128,19 @@ public class Procedure {
 	public void setProcedureName(String procedureName) {
 		this.procedureName = procedureName;
 	}
+	
+	public String toString() {
+		String info="Procedure ID: "+this.idProcedure+"\n";
+		info+="Procedure Name: "+this.procedureName+"\n";
+		info+="Procedure Starting date: "+this.startingDate+"\n";
+		if(StatusFinalized.class.isInstance(this.actualStatus)) {	
+			info+="Procedure Final date: "+this.finalDate+"\n";
+		}else {
+			info+="Procedure Current task: "+this.currentTask.getDescription()+"\n";
+		}
+		return info;
+	}
+	
 	
 }
 

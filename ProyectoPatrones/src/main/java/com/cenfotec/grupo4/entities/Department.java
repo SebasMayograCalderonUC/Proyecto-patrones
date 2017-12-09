@@ -1,8 +1,15 @@
 package com.cenfotec.grupo4.entities;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+
+import com.cenfotec.grupo4.utils.SavingType;
+import com.cenfotec.grupo4.utils.encrypt.Encryptor;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 public class Department {
 	private static int cantDep=0;
@@ -95,9 +102,37 @@ public class Department {
 			employee.setDepartment(this);
 		}
 	}
-
+	
+	public synchronized Procedure obtainProcedure() throws Exception	{
+		decryptProcedures();
+		if(this.currentProcedures.size()<1) {
+			return null;
+		}
+		Procedure procedure=this.currentProcedures.get(0);
+		this.currentProcedures.remove(0);
+		return procedure;
+	}
+	
+	public void decryptProcedures() throws Exception {
+		Encryptor encryptor=Encryptor.getInstance(SavingType.Asymetric);
+		while(this.recivedProcedure.get(0)!=null){
+			this.currentProcedures.add(encryptor.decrypt(this.recivedProcedure.get(0), this));
+			this.recivedProcedure.remove(0);	
+		}
+	}
+	
+	public String sendProcedureToDepartment(Procedure procedure, Department department) throws JsonGenerationException, JsonMappingException, IOException, Exception {
+		Encryptor encryptor=Encryptor.getInstance(SavingType.Asymetric);
+		encryptor.encrypt(procedure, department);
+		return "Procedure sended!!";
+	}
+	
 	public void recivedProcedure(String procedureName) {
 		this.recivedProcedure.add(procedureName);
+	}
+	
+	public void addEncriptedProcedure(String pricedureName) {
+		this.recivedProcedure.add(pricedureName);
 	}
 
 	public ArrayList<String> getRecivedProcedure() {

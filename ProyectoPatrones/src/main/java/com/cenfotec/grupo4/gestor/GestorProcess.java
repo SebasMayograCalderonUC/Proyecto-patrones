@@ -4,6 +4,7 @@ import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Employee;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
+import com.cenfotec.grupo4.interfaces.IGestor;
 import com.cenfotec.grupo4.utils.JsonManager;
 
 import java.io.IOException;
@@ -15,22 +16,11 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class GestorProcess {
+public class GestorProcess implements IGestor{
 	
 	private JsonManager jason;
-	private static GestorProcess instance;
-	private void Gestor() {}
-	public static GestorProcess getInstance() {
-		
-		if(instance != null) {
-			synchronized (instance) {
-				if(instance == null) {
-					instance = new GestorProcess();
-				}	
-			}
-		}
-		return instance;
-	}
+
+
 	private ArrayList<Employee> employees;
 	
 	//Metodos para acceder al Json
