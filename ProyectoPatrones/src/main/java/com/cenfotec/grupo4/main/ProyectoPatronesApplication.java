@@ -1,36 +1,13 @@
 package com.cenfotec.grupo4.main;
 
-import java.awt.Point;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-
-import java.text.SimpleDateFormat;
-
-import java.text.SimpleDateFormat;
-
-import java.util.ArrayList;
-import java.util.Date;
-
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.annotate.JsonMethod;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.*;
-import org.mockito.internal.matchers.VarargCapturingMatcher;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+<<<<<<< HEAD
 
 import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Employee;
@@ -50,6 +27,11 @@ import org.apache.bsf.util.event.adapters.java_awt_event_ActionAdapter;
 
 import org.codehaus.*;
 import org.springframework.boot.autoconfigure.jackson.*;
+=======
+import com.cenfotec.grupo4.gestor.Action;
+import com.cenfotec.grupo4.gestor.GestorProcess;
+import com.cenfotec.grupo4.utils.CaledarCustom;
+import com.cenfotec.grupo4.utils.GestorCreate;
 import org.springframework.core.env.Environment;
 import org.springframework.data.annotation.CreatedBy;
 
@@ -71,7 +53,9 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 
 	
 	public void run(String... args) throws Exception {
+
 		ShowMessage("\n");
+		ShowMessage(new CaledarCustom().getFormattedDate());
 		ShowMessage("\n");
 		ShowMessage("Controlador de Tramite  0.1");
         int option;
@@ -107,6 +91,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}
 		return false;
 	}
+	
 	public static int GetInteger(int limit) {
 	   int  option ;
 	   do {   
@@ -139,10 +124,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
    }
 }
 
-
- 
-
-	
 
 
 
