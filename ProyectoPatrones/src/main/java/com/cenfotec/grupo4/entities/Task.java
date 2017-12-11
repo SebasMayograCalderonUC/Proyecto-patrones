@@ -35,6 +35,14 @@ public class Task {
 		this.nextTask = nextTask;
 	}
 	
+	public void addTask(String taskName) {
+		if(this.nextTask!=null) {
+			this.nextTask.addTask(taskName);
+		}else {
+			this.nextTask=new Task(null,taskName);
+		}
+	}
+	
 	public String getDescription() {
 		return description;
 	}

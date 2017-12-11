@@ -7,7 +7,9 @@ public class CommunicationManager {
  	   	ShowMessage("1. Crear procedimiento");
         ShowMessage("2. Obtener procedimiento");
         ShowMessage("3: Enviar procedimiento");
-        ShowMessage("4: Salir");
+        ShowMessage("4. Tratar procedimiento");
+        ShowMessage("5. Logout");
+        ShowMessage("6: Salir");
         ShowMessageLine("Enter option: ");
     }
     

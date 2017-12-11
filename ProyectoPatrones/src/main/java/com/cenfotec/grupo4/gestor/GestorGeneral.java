@@ -1,12 +1,17 @@
 package com.cenfotec.grupo4.gestor;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.commons.logging.Log;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
 
 import com.cenfotec.grupo4.entities.Department;
+import com.cenfotec.grupo4.entities.Procedure;
+import com.cenfotec.grupo4.interfaces.IGestor;
 import com.cenfotec.grupo4.main.Login;
 
 public class GestorGeneral {
@@ -29,6 +34,12 @@ public class GestorGeneral {
 	
 	public String tratarProcedimiento(int procedureIndex,boolean responce) {
 		return Login.employee.treatProcedure(procedureIndex, responce);
+	}
+	
+	public String CrearProcedimiento(ArrayList<String> tareas, String ProcedureName) {
+		GestorCreate gestor =new GestorCreate();
+		Login.employee.addProcedure(gestor.crearProcedure(tareas,ProcedureName));
+		return "The procedure has been added";
 	}
 	
 	public String getAllActiveProcedures() {

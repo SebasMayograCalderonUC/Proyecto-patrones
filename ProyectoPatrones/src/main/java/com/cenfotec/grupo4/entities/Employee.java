@@ -56,6 +56,10 @@ public class Employee {
 	public static void setCantEmployees(int cantEmployees) {
 		Employee.cantEmployees = cantEmployees;
 	}
+	
+	public void addProcedure(Procedure procedure) {
+		this.treatedProcedures.add(procedure);
+	}
 
 	public String getIdEmployee() {
 		return idEmployee;

@@ -6,23 +6,21 @@ import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.entities.Task;
 import com.cenfotec.grupo4.interfaces.IGestor;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.codehaus.jackson.map.ObjectMapper;
 
 public class GestorCreate implements IGestor{
-
-	public static Department crearDepartamento(String publicKey, String privatekey, ArrayList<String> recivedProcedures,
-			ArrayList<Procedure> currentProcedures,ArrayList<Employee> employees,String departmentName) {
-		return new Department(publicKey,privatekey,recivedProcedures,currentProcedures,employees,departmentName);
-	}
-
-	public static Procedure crearCaso(String startingDate,String finalDate,Task task,String procedureName) {
-		return new Procedure(startingDate,finalDate,task,procedureName);	
-	}
-	public static Task crearTarea(String description,Task accepted,Task denied) {
-		return new Task(null,"description");	
+	
+	public Procedure crearProcedure(ArrayList<String>taskNames, String procedureName) {
+		Date date = new Date();
+		Procedure procedure=new Procedure(date.toString(),null,null,procedureName);
+		for(String name:taskNames) {
+			procedure.addTask(name);
+		}
+		return procedure;
+		
 	}
 
 }

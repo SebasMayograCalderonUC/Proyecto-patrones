@@ -50,6 +50,14 @@ public class Procedure {
 		finalizedStatus= new StatusFinalized();
 		actualStatus=activeStatus;	
 	}
+	
+	public void addTask(String taskName) {
+		if(currentTask==null) {
+			currentTask = new Task(null,taskName);
+		}else {
+			currentTask.addTask(taskName);
+		}
+	}
 
 
 	public static int getCantProcedures() {

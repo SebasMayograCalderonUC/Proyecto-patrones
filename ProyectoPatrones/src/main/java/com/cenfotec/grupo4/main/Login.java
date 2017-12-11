@@ -25,5 +25,8 @@ public class Login {
 		}
 		return false;	
 	}
+	public static void logOut() {
+		employee=null;
+	}
 	
 }

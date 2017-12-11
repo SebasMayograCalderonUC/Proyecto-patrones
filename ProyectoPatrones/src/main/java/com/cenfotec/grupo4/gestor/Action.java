@@ -4,5 +4,7 @@ public enum Action {
 	CreateProcedure,
 	ObtainProcedure,
 	SendProcedure,
+	TreatProcedure,
+	Logout,
 	Exit
 }
