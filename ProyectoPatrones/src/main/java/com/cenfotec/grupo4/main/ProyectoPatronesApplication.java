@@ -54,6 +54,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		app.run(args);
 	}
 
+<<<<<<< HEAD
 	
 	public void run(String... args) throws Exception {
 		 int option=0;
@@ -71,6 +72,19 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			ShowMessage("\n");
 			ShowMessage("\n");
 		}
+=======
+		ShowMessage("\n");
+		ShowMessage("\n");
+		ShowMessage("\n");
+		ShowMessage("Controlador de Tramite  0.1");
+        int option;
+		do {
+        	ShowMenu();
+        	option = GetInteger(CommunicationManager.CantOptions);
+        }while(!execMenu(option));
+		ShowMessage("\n");
+		ShowMessage("\n");
+>>>>>>> Marvin
     }
 	
 	public void Login() throws IOException {
