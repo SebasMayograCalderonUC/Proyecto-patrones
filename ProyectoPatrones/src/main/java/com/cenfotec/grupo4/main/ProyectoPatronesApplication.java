@@ -32,7 +32,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		ShowMessage("\n");
-		ShowMessage(new CaledarCustom().getFormattedDate());
+		ShowMessage("\n");
 		ShowMessage("\n");
 		ShowMessage("Controlador de Tramite  0.1");
         int option;
