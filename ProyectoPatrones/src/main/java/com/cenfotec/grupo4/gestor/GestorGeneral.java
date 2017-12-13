@@ -1,22 +1,38 @@
 package com.cenfotec.grupo4.gestor;
 
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 
 import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.interfaces.IGestor;
 import com.cenfotec.grupo4.main.Login;
+import com.cenfotec.grupo4.utils.JsonManager;
 
 public class GestorGeneral {
 	
-	public static ArrayList<Department> departments;
+	private static GestorGeneral gest=null;
+	private  ArrayList<Department> departments;
+	public  String bla;
+	private GestorGeneral() throws JsonParseException, JsonMappingException, IOException {
+		JsonManager jsonManager=new JsonManager();
+		this.departments=jsonManager.fetchDepartments();
+		this.bla="Estoy aqui";
+	}
+	public static GestorGeneral getInstance() throws JsonParseException, JsonMappingException, IOException {
+		if(gest==null) {
+			gest=new GestorGeneral();
+		}
+		return gest;
+	}
+	public ArrayList<Department> getDepartments(){
+		return departments;
+	}
 	
 	public String obtenerProcedimiento() throws Exception {
 		return Login.employee.obtainProcedure();

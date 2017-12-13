@@ -1,40 +1,25 @@
 package com.cenfotec.grupo4.main;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.Date;
+
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
-import com.cenfotec.grupo4.entities.Department;
-import com.cenfotec.grupo4.entities.Employee;
-import com.cenfotec.grupo4.entities.Procedure;
-import com.cenfotec.grupo4.entities.Task;
-
-import com.cenfotec.grupo4.gestor.GestorProcess;
-import com.cenfotec.grupo4.interfaces.IGestor;
+import com.cenfotec.grupo4.entities.*;
 import com.cenfotec.grupo4.gestor.Action;
-import com.cenfotec.grupo4.gestor.GestorCreate;
+
 import com.cenfotec.grupo4.gestor.GestorGeneral;
-import com.cenfotec.grupo4.utils.encrypt.EncryptManagerSymetric;
-import com.cenfotec.grupo4.utils.encrypt.Encryptor;
-
-
-import com.cenfotec.grupo4.utils.*;
-
-import org.apache.bsf.util.event.adapters.java_awt_event_ActionAdapter;
-import org.codehaus.*;
-import org.springframework.boot.autoconfigure.jackson.*;
-
-import com.cenfotec.grupo4.gestor.Action;
-import com.cenfotec.grupo4.gestor.GestorProcess;
-import com.cenfotec.grupo4.utils.CaledarCustom;
+import com.cenfotec.grupo4.utils.JsonManager;
 
 import org.springframework.core.env.Environment;
 
@@ -46,22 +31,21 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	public static void main(String[] args) {
-		gestorProcess = new GestorGeneral();
+	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
+		gestorProcess = GestorGeneral.getInstance();
 		
 		SpringApplication  app = new SpringApplication(ProyectoPatronesApplication.class);
 		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
 	}
 
-<<<<<<< HEAD
 	
 	public void run(String... args) throws Exception {
-		 int option=0;
-		while (Action.values()[option-1]!=Action.Exit) {
+	
+		int option;
+		do {
 			Login();
 			ShowMessage("\n");
-			ShowMessage(new CaledarCustom().getFormattedDate());
 			ShowMessage("\n");
 			ShowMessage("Controlador de Tramite  0.1");
 
@@ -71,28 +55,18 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	        }while(!execMenu(option));
 			ShowMessage("\n");
 			ShowMessage("\n");
-		}
-=======
-		ShowMessage("\n");
-		ShowMessage("\n");
-		ShowMessage("\n");
-		ShowMessage("Controlador de Tramite  0.1");
-        int option;
-		do {
-        	ShowMenu();
-        	option = GetInteger(CommunicationManager.CantOptions);
-        }while(!execMenu(option));
-		ShowMessage("\n");
-		ShowMessage("\n");
->>>>>>> Marvin
+			ShowMessage("Controlador de Tramite  0.1");
+	}while(Action.values()[option-1]!=Action.Exit);
+
     }
 	
 	public void Login() throws IOException {
 		String [] datos=pedirDatosLogin();
-		while(Login.login(datos[0], datos[1])) {
+		while(!Login.login(datos[0], datos[1])) {
 			System.out.println("Contraseña o password incorrecta intente denuevo");
 			datos=pedirDatosLogin();
 		}
+	
 	}
 	public String[] pedirDatosLogin() throws IOException {
 		String[] datos=new String[2];
@@ -168,6 +142,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	   CommunicationManager communicationManager=new CommunicationManager();
 	   communicationManager.ShowMessage(message);
    }
+   
 }
 
 
