@@ -9,7 +9,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.security.PublicKey;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
@@ -31,24 +30,15 @@ public class EncryptManagerSymetric implements IEncryptManager{
 		writeBytesFile(keyName,key,KEY_EXTENSION);
 	}
 
-	public void encryptMessage(String messageName, String message, String keyName) throws Exception {	
-		boolean salir=false;
-		do {
-			try {
-				byte[] key = readKeyFile(keyName);
-				Cipher cipher = Cipher.getInstance("AES");
-				SecretKeySpec k = new SecretKeySpec(key,"AES");
-				cipher.init(Cipher.ENCRYPT_MODE, k);
-				byte[] encryptedData = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
-			    Encoder oneEncoder = Base64.getEncoder();
-			    encryptedData = oneEncoder.encode(encryptedData);
-				writeBytesFile(messageName,encryptedData,MESSAGE_ENCRYPT_EXTENSION);
-				salir=true;
-			}catch(Exception ex) {
-				createKey(keyName);
-				System.out.println("s");
-			}
-		}while(!salir);	
+	public void encryptMessage(String messageName, String message, String keyName) throws Exception {
+		byte[] key = readKeyFile(keyName);
+		Cipher cipher = Cipher.getInstance("AES");
+		SecretKeySpec k = new SecretKeySpec(key,"AES");
+		cipher.init(Cipher.ENCRYPT_MODE, k);
+		byte[] encryptedData = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
+	    Encoder oneEncoder = Base64.getEncoder();
+	    encryptedData = oneEncoder.encode(encryptedData);
+		writeBytesFile(messageName,encryptedData,MESSAGE_ENCRYPT_EXTENSION);
 	}
 	
 	public String decryptMessage(String messageName, String keyName) throws Exception {
