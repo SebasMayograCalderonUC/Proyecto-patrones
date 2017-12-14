@@ -22,6 +22,7 @@ import com.cenfotec.grupo4.gestor.GestorGeneral;
 import com.cenfotec.grupo4.interfaces.use.EstrategiaGestor;
 import com.cenfotec.grupo4.ui.CreateProcedur;
 import com.cenfotec.grupo4.ui.ObtainProcedur;
+import com.cenfotec.grupo4.ui.SendProcedur;
 import com.cenfotec.grupo4.utils.JsonManager;
 
 import org.springframework.core.env.Environment;
@@ -89,7 +90,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 				ObtainProcedure();
 				break;
 			case SendProcedure:
-				
+				SendProcedure();
 				break;
 			case Logout:
 					
@@ -106,6 +107,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			}
 		return false;
 	}
+	
 	public void CreateProcedure() throws Exception {
 		EstrategiaGestor createProcedure = new CreateProcedur(gestorProcess);
 		createProcedure.RunAction();
@@ -114,10 +116,16 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		EstrategiaGestor obtainProcedure = new ObtainProcedur(gestorProcess);
 		obtainProcedure.RunAction();
 	}
+	public void SendProcedure() throws Exception {
+		EstrategiaGestor sendProcedure = new SendProcedur(gestorProcess);
+		sendProcedure.RunAction();
+	}
 	public boolean Logout() {
 		Login.logOut();
 		return false;
 	}
+	
+	
 	
 	public  int GetInteger(int limit) {
 	   int  option ;
