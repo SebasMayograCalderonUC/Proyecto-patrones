@@ -23,8 +23,12 @@ import com.cenfotec.grupo4.gestor.GestorGeneral;
 import com.cenfotec.grupo4.interfaces.use.EstrategiaGestor;
 import com.cenfotec.grupo4.ui.CreateProcedur;
 import com.cenfotec.grupo4.ui.ObtainProcedur;
+<<<<<<< HEAD
 =======
 >>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
+=======
+import com.cenfotec.grupo4.ui.SendProcedur;
+>>>>>>> parent of b381234... Fix encriptar
 import com.cenfotec.grupo4.utils.JsonManager;
 
 import org.springframework.core.env.Environment;
@@ -37,7 +41,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
 		gestorProcess = GestorGeneral.getInstance();
 		
 		SpringApplication  app = new SpringApplication(ProyectoPatronesApplication.class);
@@ -66,7 +70,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 
     }
 	
-	public void Login() throws Exception {
+	public void Login() throws IOException {
 		String [] datos=pedirDatosLogin();
 		while(!Login.login(datos[0], datos[1])) {
 			System.out.println("Incorrect password, try again");
@@ -87,14 +91,19 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			switch (Action.values()[opcion-1]) {
 			case CreateProcedure:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				this.CreateProcedure();
 >>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
+=======
+				CreateProcedure();
+>>>>>>> parent of b381234... Fix encriptar
 				break;
 			case ObtainProcedure:
 				this.ObtainProcedure();
 				break;
 			case SendProcedure:
+<<<<<<< HEAD
 <<<<<<< HEAD
 				sendProcedure();
 =======
@@ -109,6 +118,9 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			case GetAllFinalizedProcedures:
 				this.GetAllFinalizedProcedures();
 >>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
+=======
+				SendProcedure();
+>>>>>>> parent of b381234... Fix encriptar
 				break;
 			case Logout:
 				this.Logout();
@@ -123,6 +135,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			}
 		return false;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	public void sendProcedure() throws Exception {
 		CommunicationManager.ShowMessage(gestorProcess.getAllActiveProcedures());
@@ -154,6 +167,12 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			CommunicationManager.ShowMessage("Sorry I can not create the procedure");
 		}
 >>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
+=======
+	
+	public void CreateProcedure() throws Exception {
+		EstrategiaGestor createProcedure = new CreateProcedur(gestorProcess);
+		createProcedure.RunAction();
+>>>>>>> parent of b381234... Fix encriptar
 	}
 	public void ObtainProcedure() throws Exception {
 		String infoProcedure;
@@ -161,7 +180,14 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		CommunicationManager.ShowMessageLine(infoProcedure);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
+=======
+	public void SendProcedure() throws Exception {
+		EstrategiaGestor sendProcedure = new SendProcedur(gestorProcess);
+		sendProcedure.RunAction();
+	}
+>>>>>>> parent of b381234... Fix encriptar
 	public boolean Logout() {
 =======
 	public void SendProcedure() throws Exception {
@@ -263,7 +289,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		   return false;
 	   }
    } 
-   
 }
 
 

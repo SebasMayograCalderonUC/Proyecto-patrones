@@ -12,8 +12,11 @@ public class ObtainProcedur implements EstrategiaGestor{
 	@Override
 	public void RunAction() throws Exception {
 		String infoProcedure;
+	
 			infoProcedure = this.gestor.obtenerProcedimiento();
 			CommunicationManager.ShowMessageLine(infoProcedure);
+	
+		
 	}
 
 }
