@@ -17,8 +17,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.cenfotec.grupo4.entities.*;
 import com.cenfotec.grupo4.gestor.Action;
-
 import com.cenfotec.grupo4.gestor.GestorGeneral;
+<<<<<<< HEAD
 <<<<<<< HEAD
 import com.cenfotec.grupo4.interfaces.use.EstrategiaGestor;
 import com.cenfotec.grupo4.ui.CreateProcedur;
@@ -29,6 +29,8 @@ import com.cenfotec.grupo4.ui.ObtainProcedur;
 =======
 import com.cenfotec.grupo4.ui.SendProcedur;
 >>>>>>> parent of b381234... Fix encriptar
+=======
+>>>>>>> Marvin
 import com.cenfotec.grupo4.utils.JsonManager;
 
 import org.springframework.core.env.Environment;
@@ -92,12 +94,16 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			case CreateProcedure:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 				this.CreateProcedure();
 >>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 =======
 				CreateProcedure();
 >>>>>>> parent of b381234... Fix encriptar
+=======
+				this.CreateProcedure();
+>>>>>>> Marvin
 				break;
 			case ObtainProcedure:
 				this.ObtainProcedure();
@@ -105,8 +111,11 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			case SendProcedure:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 				sendProcedure();
 =======
+=======
+>>>>>>> Marvin
 				this.SendProcedure();
 				break;
 			case TreatProcedure:
@@ -117,10 +126,13 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 				break;
 			case GetAllFinalizedProcedures:
 				this.GetAllFinalizedProcedures();
+<<<<<<< HEAD
 >>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 =======
 				SendProcedure();
 >>>>>>> parent of b381234... Fix encriptar
+=======
+>>>>>>> Marvin
 				break;
 			case Logout:
 				this.Logout();
@@ -137,6 +149,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void sendProcedure() throws Exception {
 		CommunicationManager.ShowMessage(gestorProcess.getAllActiveProcedures());
 		CommunicationManager.ShowMessage("Deme el id del procedimiento");
@@ -146,6 +159,8 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		String idDep=br.readLine();
 		CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(proid, idDep));
 =======
+=======
+>>>>>>> Marvin
 	public void CreateProcedure() throws Exception {
 		String nameProcedure =  CommunicationManager.AskForText("Enter the name of the procedure");
 		ArrayList<String> listNameTask = new ArrayList<String>();
@@ -166,6 +181,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}else {
 			CommunicationManager.ShowMessage("Sorry I can not create the procedure");
 		}
+<<<<<<< HEAD
 >>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 =======
 	
@@ -173,12 +189,16 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		EstrategiaGestor createProcedure = new CreateProcedur(gestorProcess);
 		createProcedure.RunAction();
 >>>>>>> parent of b381234... Fix encriptar
+=======
+>>>>>>> Marvin
 	}
+	
 	public void ObtainProcedure() throws Exception {
 		String infoProcedure;
 		infoProcedure = this.gestorProcess.obtenerProcedimiento();
 		CommunicationManager.ShowMessageLine(infoProcedure);
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	
@@ -190,6 +210,9 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 >>>>>>> parent of b381234... Fix encriptar
 	public boolean Logout() {
 =======
+=======
+
+>>>>>>> Marvin
 	public void SendProcedure() throws Exception {
 		Employee employee = Login.employee;
 		if(employee.getTreatedProcedures().size() == 0) {
@@ -205,7 +228,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			index = getIndexProdedure(employee.getTreatedProcedures(),idProcedure);
 			if(index >= 0) {
 				String idDep = employee.getDepartment().getIdDep();
-				//CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(index,idDep));//Aqui se cae Lavara
+				CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(index,idDep));//Aqui se cae Lavara
 			}
 		}
 	}
@@ -222,7 +245,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}
 	}
 	public boolean Logout(){
->>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 		Login.logOut();
 		return false;
 	}
