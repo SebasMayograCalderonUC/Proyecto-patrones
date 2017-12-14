@@ -77,14 +77,14 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		return datos;
 	}
 	
-	public boolean execMenu(int opcion) {
+	public boolean execMenu(int opcion) throws Exception {
 		
 			switch (Action.values()[opcion-1]) {
 			case CreateProcedure:
 				
 				break;
 			case ObtainProcedure:
-				
+				obtenerProcedimiento();
 				break;
 			case SendProcedure:
 				
@@ -106,6 +106,9 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 	public void crearProcedimiento() {
 		
+	}
+	public void obtenerProcedimiento() throws Exception {
+		System.out.println(	gestorProcess.obtenerProcedimiento());
 	}
 	public boolean Logout() {
 		Login.logOut();

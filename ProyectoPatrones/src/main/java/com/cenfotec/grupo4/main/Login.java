@@ -16,7 +16,6 @@ public class Login {
 	
 	public static boolean login(String email,String password) throws JsonParseException, JsonMappingException, IOException {
 		GestorGeneral gest = GestorGeneral.getInstance();
-		System.out.println(gest.getDepartments().size());
 		ArrayList<Department>departments=gest.getDepartments();
 	
 		for(Department dep:departments) {

@@ -35,7 +35,7 @@ public class Department {
 		this.setEmployees(employees);
 		this.publicKey = publicKey;
 		this.privatekey = privatekey;
-		this.recivedProcedure = recivedProcedures;
+		this.recivedProcedure = new ArrayList<>();
 		this.currentProcedures = currentProcedures;
 		this.departmentName=departmentName;
 	}
@@ -104,8 +104,10 @@ public class Department {
 	}
 	
 	public synchronized Procedure obtainProcedure() throws Exception	{
-		decryptProcedures();
-		if(this.currentProcedures.size()<1) {
+		if(this.recivedProcedure!=null) {
+			decryptProcedures();
+		}
+		if(this.currentProcedures.size()==0) {
 			return null;
 		}
 		Procedure procedure=this.currentProcedures.get(0);
@@ -115,10 +117,13 @@ public class Department {
 	
 	public void decryptProcedures() throws Exception {
 		Encryptor encryptor=Encryptor.getInstance(SavingType.Asymetric);
-		while(this.recivedProcedure.get(0)!=null){
-			this.currentProcedures.add(encryptor.decrypt(this.recivedProcedure.get(0), this));
-			this.recivedProcedure.remove(0);	
+		if(this.recivedProcedure.size()>=1) {
+			while(this.recivedProcedure.get(0)!=null){
+				this.currentProcedures.add(encryptor.decrypt(this.recivedProcedure.get(0), this));
+				this.recivedProcedure.remove(0);	
+			}
 		}
+		
 	}
 	
 	public String sendProcedureToDepartment(Procedure procedure, Department department) throws JsonGenerationException, JsonMappingException, IOException, Exception {
@@ -128,6 +133,9 @@ public class Department {
 	}
 	
 	public void recivedProcedure(String procedureName) {
+		if(this.recivedProcedure==null) {
+			this.recivedProcedure=new ArrayList<>();
+		}
 		this.recivedProcedure.add(procedureName);
 	}
 	
