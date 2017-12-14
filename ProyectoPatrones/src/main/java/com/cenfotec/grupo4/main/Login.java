@@ -13,7 +13,8 @@ import com.cenfotec.grupo4.gestor.GestorGeneral;
 public class Login {
 	
 	public static Employee employee=null;
-	public static boolean login(String email,String password) throws JsonParseException, JsonMappingException, IOException {
+	
+	public static boolean login(String email,String password) throws Exception {
 		GestorGeneral gest = GestorGeneral.getInstance();
 		ArrayList<Department>departments=gest.getDepartments();
 	

@@ -101,10 +101,22 @@ public class Employee {
 		this.department = department;
 	}
 	
-	public String sendProcedure(Department departemnt,int procedureIndex) throws JsonGenerationException, JsonMappingException, IOException, Exception {
-		Encryptor encryptor=Encryptor.getInstance(SavingType.Asymetric);
-		String procedureName=encryptor.encrypt(this.treatedProcedures.get(procedureIndex), departemnt);
-		return "Procedure has been send!!";
+	public String sendProcedure(Department departemnt,String idprocedure) throws JsonGenerationException, JsonMappingException, IOException, Exception {
+		Encryptor encryptor=Encryptor.getInstance(SavingType.Symetric);
+		Procedure pro=getProcedureByID(idprocedure);
+		if(pro==null) {
+			return "Procedimiento no enctontrado!";
+		}
+		String procedureName=encryptor.encrypt(pro, departemnt);
+		return "Procedure "+procedureName+" has been send!!";
+	}
+	public Procedure getProcedureByID(String id) {
+		for(Procedure pro:this.treatedProcedures) {
+			if(id.equals(id)) {
+				return pro;
+			}
+		}
+		return null;
 	}
 	
 	
@@ -141,10 +153,13 @@ public class Employee {
 		String info="--------------------------\n";
 		for(Procedure procedure: this.treatedProcedures) {
 			if(StatusActive.class.isInstance(procedure.getActualStatus())) {
-				info=info+procedure.toString();
-				info+="--------------------------\n";
+				info+=info+procedure.toString();
+				
+				
 			}
+			info+="--------------------------\n";
 		}
+		
 		return info;
 	}
 	public String getAllFinalizedAProcedures() {
