@@ -19,6 +19,9 @@ import com.cenfotec.grupo4.entities.*;
 import com.cenfotec.grupo4.gestor.Action;
 
 import com.cenfotec.grupo4.gestor.GestorGeneral;
+import com.cenfotec.grupo4.interfaces.use.EstrategiaGestor;
+import com.cenfotec.grupo4.ui.CreateProcedur;
+import com.cenfotec.grupo4.ui.ObtainProcedur;
 import com.cenfotec.grupo4.utils.JsonManager;
 
 import org.springframework.core.env.Environment;
@@ -45,17 +48,17 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		int option;
 		do {
 			Login();
-			ShowMessage("\n");
-			ShowMessage("\n");
-			ShowMessage("Controlador de Tramite  0.1");
+			CommunicationManager.ShowMessage("\n");
+			CommunicationManager.ShowMessage("\n");
+			CommunicationManager.ShowMessage("Controlador de Tramite  0.1");
 
 			do {
-	        	ShowMenu();
+				CommunicationManager.ShowMenu();
 	        	option = GetInteger(CommunicationManager.CantOptions);
 	        }while(!execMenu(option));
-			ShowMessage("\n");
-			ShowMessage("\n");
-			ShowMessage("Controlador de Tramite  0.1");
+			CommunicationManager.ShowMessage("\n");
+			CommunicationManager.ShowMessage("\n");
+			CommunicationManager.ShowMessage("Controlador de Tramite  0.1");
 	}while(Action.values()[option-1]!=Action.Exit);
 
     }
@@ -78,13 +81,12 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 	
 	public boolean execMenu(int opcion) throws Exception {
-		
 			switch (Action.values()[opcion-1]) {
 			case CreateProcedure:
-				
+				CreateProcedure();
 				break;
 			case ObtainProcedure:
-				obtenerProcedimiento();
+				ObtainProcedure();
 				break;
 			case SendProcedure:
 				
@@ -100,15 +102,17 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 				break;
 
 			default:
-				ShowMessage("Opcion invalida intente denuevo");
+				CommunicationManager.ShowMessage("Opcion invalida intente denuevo");
 			}
 		return false;
 	}
-	public void crearProcedimiento() {
-		
+	public void CreateProcedure() throws Exception {
+		EstrategiaGestor createProcedure = new CreateProcedur(gestorProcess);
+		createProcedure.RunAction();
 	}
-	public void obtenerProcedimiento() throws Exception {
-		System.out.println(	gestorProcess.obtenerProcedimiento());
+	public void ObtainProcedure() throws Exception {
+		EstrategiaGestor obtainProcedure = new ObtainProcedur(gestorProcess);
+		obtainProcedure.RunAction();
 	}
 	public boolean Logout() {
 		Login.logOut();
@@ -125,8 +129,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			   }
 			   return option;
 		   }catch (Exception e) {
-			CommunicationManager communicationManager= new CommunicationManager();
-			communicationManager.ShowMessageLine("Error try again: ");
+			CommunicationManager.ShowMessageLine("Error try again: ");
 		}	   
 	   }while(true);
    }
@@ -136,16 +139,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	   }else {
 		   return false;
 	   }
-   }
-   public void ShowMenu() {
-	   CommunicationManager communicationManager=new CommunicationManager();
-	   communicationManager.ShowMenu();
-   }
-   public void ShowMessage(String message) {
-	   CommunicationManager communicationManager=new CommunicationManager();
-	   communicationManager.ShowMessage(message);
-   }
-   
+   } 
 }
 
 
