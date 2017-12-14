@@ -19,10 +19,6 @@ import com.cenfotec.grupo4.entities.*;
 import com.cenfotec.grupo4.gestor.Action;
 
 import com.cenfotec.grupo4.gestor.GestorGeneral;
-import com.cenfotec.grupo4.interfaces.use.EstrategiaGestor;
-import com.cenfotec.grupo4.ui.CreateProcedur;
-import com.cenfotec.grupo4.ui.ObtainProcedur;
-import com.cenfotec.grupo4.ui.SendProcedur;
 import com.cenfotec.grupo4.utils.JsonManager;
 
 import org.springframework.core.env.Environment;
@@ -93,10 +89,10 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 				SendProcedure();
 				break;
 			case Logout:
-					
+				Logout();
 				break;
 			case Exit:
-				
+				Exit();
 				break;
 			case TreatProcedure:
 				
@@ -109,23 +105,66 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 	
 	public void CreateProcedure() throws Exception {
-		EstrategiaGestor createProcedure = new CreateProcedur(gestorProcess);
-		createProcedure.RunAction();
+		String nameProcedure =  CommunicationManager.AskForText("Ingrese el nombre del procedimiento");
+		ArrayList<String> listNameTask = new ArrayList<String>();
+		String value = "Sin descripcion";
+		int i = 1;
+		while(i!= -1) {
+			value = CommunicationManager.AskForText("Ingrese la descripcion de la tarea numero " +i+"\n O -1 para continuar...");
+			if(value.equals("-1")) {
+				i = -1;
+			}else {
+				listNameTask.add(value);
+				i++;
+			}
+		}
+		CommunicationManager.ShowMessage(""+listNameTask.size());
+		if(listNameTask.size() != 0) {
+			this.gestorProcess.CrearProcedimiento(listNameTask,nameProcedure);
+		}else {
+			CommunicationManager.ShowMessage("Lo siento no se puede crear el procedimeinto");
+		}
 	}
 	public void ObtainProcedure() throws Exception {
-		EstrategiaGestor obtainProcedure = new ObtainProcedur(gestorProcess);
-		obtainProcedure.RunAction();
+		String infoProcedure;
+		infoProcedure = this.gestorProcess.obtenerProcedimiento();
+		CommunicationManager.ShowMessageLine(infoProcedure);
 	}
 	public void SendProcedure() throws Exception {
-		EstrategiaGestor sendProcedure = new SendProcedur(gestorProcess);
-		sendProcedure.RunAction();
+		Employee employee = Login.employee;
+		if(employee.getTreatedProcedures().size() == 0) {
+			CommunicationManager.ShowMessage("");
+			CommunicationManager.ShowMessage(employee.getEmployeeFullName()+" "+ "no tiene procediemientos\n"
+			+ "Por favor obtenga uno de su Departamento");
+			CommunicationManager.ShowMessage("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+		}else {
+			int index = -1;
+			int j = 0;
+			String idProcedure ="";
+			for(int i = 0; i<employee.getTreatedProcedures().size(); i++) {
+				CommunicationManager.ShowMessage("");
+				CommunicationManager.ShowMessage(employee.getTreatedProcedures().get(i).toString());
+				CommunicationManager.ShowMessage("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+			}
+			idProcedure = CommunicationManager.AskForText("Ingrese el ID del Procedimeinto que dese tratar :");
+			while(j<employee.getTreatedProcedures().size()) {
+				if(employee.getTreatedProcedures().get(j).getIdProcedure().equals(idProcedure)) {
+					index = j;;
+				}
+				j++;
+			}
+			String idDep = employee.getDepartment().getIdDep();
+			gestorProcess.enviarProcedimiento(index,idDep);//Aqui se cae Sevas
+		}
 	}
 	public boolean Logout() {
 		Login.logOut();
 		return false;
 	}
 	
-	
+	public void Exit() {
+		System.exit(0);
+	}
 	
 	public  int GetInteger(int limit) {
 	   int  option ;
