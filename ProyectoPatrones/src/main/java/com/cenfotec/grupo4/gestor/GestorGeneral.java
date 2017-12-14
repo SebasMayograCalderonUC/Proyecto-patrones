@@ -21,7 +21,11 @@ public class GestorGeneral {
 	private static GestorGeneral gest=null;
 	private  ArrayList<Department> departments;
 	public  String bla;
+<<<<<<< HEAD
 	private GestorGeneral() throws Exception {
+=======
+	GestorGeneral() throws JsonParseException, JsonMappingException, IOException {
+>>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 		JsonManager jsonManager=new JsonManager();
 		this.departments=jsonManager.fetchDepartments();
 		Encryptor encryp=Encryptor.getInstance(SavingType.Symetric);

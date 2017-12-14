@@ -102,7 +102,7 @@ public class Department {
 			employee.setDepartment(this);
 		}
 	}
-	
+	 
 	public synchronized Procedure obtainProcedure() throws Exception	{
 		if(this.recivedProcedure!=null) {
 			decryptProcedures();

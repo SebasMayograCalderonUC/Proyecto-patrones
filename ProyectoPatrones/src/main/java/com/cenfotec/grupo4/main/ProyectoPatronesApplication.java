@@ -19,9 +19,12 @@ import com.cenfotec.grupo4.entities.*;
 import com.cenfotec.grupo4.gestor.Action;
 
 import com.cenfotec.grupo4.gestor.GestorGeneral;
+<<<<<<< HEAD
 import com.cenfotec.grupo4.interfaces.use.EstrategiaGestor;
 import com.cenfotec.grupo4.ui.CreateProcedur;
 import com.cenfotec.grupo4.ui.ObtainProcedur;
+=======
+>>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 import com.cenfotec.grupo4.utils.JsonManager;
 
 import org.springframework.core.env.Environment;
@@ -50,7 +53,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			Login();
 			CommunicationManager.ShowMessage("\n");
 			CommunicationManager.ShowMessage("\n");
-			CommunicationManager.ShowMessage("Controlador de Tramite  0.1");
+			CommunicationManager.ShowMessage("Processing controller 0.1");
 
 			do {
 				CommunicationManager.ShowMenu();
@@ -58,7 +61,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	        }while(!execMenu(option));
 			CommunicationManager.ShowMessage("\n");
 			CommunicationManager.ShowMessage("\n");
-			CommunicationManager.ShowMessage("Controlador de Tramite  0.1");
+			CommunicationManager.ShowMessage("Processing controller 0.1");
 	}while(Action.values()[option-1]!=Action.Exit);
 
     }
@@ -66,16 +69,16 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public void Login() throws Exception {
 		String [] datos=pedirDatosLogin();
 		while(!Login.login(datos[0], datos[1])) {
-			System.out.println("Contraseña o password incorrecta intente denuevo");
+			System.out.println("Incorrect password, try again");
 			datos=pedirDatosLogin();
 		}
 	
 	}
 	public String[] pedirDatosLogin() throws IOException {
 		String[] datos=new String[2];
-		System.out.println("Correo de usuario: ");
+		System.out.println("User mail: ");
 		datos[0]=br.readLine();
-		System.out.println("Contraseña de usuario: ");
+		System.out.println("User password: ");
 		datos[1]=br.readLine();
 		return datos;
 	}
@@ -83,28 +86,44 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public boolean execMenu(int opcion) throws Exception {
 			switch (Action.values()[opcion-1]) {
 			case CreateProcedure:
+<<<<<<< HEAD
+=======
+				this.CreateProcedure();
+>>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 				break;
 			case ObtainProcedure:
-				ObtainProcedure();
+				this.ObtainProcedure();
 				break;
 			case SendProcedure:
+<<<<<<< HEAD
 				sendProcedure();
-				break;
-			case Logout:
-					
-				break;
-			case Exit:
-				
+=======
+				this.SendProcedure();
 				break;
 			case TreatProcedure:
-				
+				this.TreatProcedure();
 				break;
+			case GetAllActiveProcedures:
+				this.GetAllActiveProcedures();
+				break;
+			case GetAllFinalizedProcedures:
+				this.GetAllFinalizedProcedures();
+>>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
+				break;
+			case Logout:
+				this.Logout();
+				break;
+			case Exit:
+				this.Exit();
+				break;
+			
 
 			default:
-				CommunicationManager.ShowMessage("Opcion invalida intente denuevo");
+				CommunicationManager.ShowMessage("Invalid option try again");
 			}
 		return false;
 	}
+<<<<<<< HEAD
 	public void sendProcedure() throws Exception {
 		CommunicationManager.ShowMessage(gestorProcess.getAllActiveProcedures());
 		CommunicationManager.ShowMessage("Deme el id del procedimiento");
@@ -113,19 +132,116 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		CommunicationManager.ShowMessage("Deme el id del departamento: ");
 		String idDep=br.readLine();
 		CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(proid, idDep));
+=======
+	public void CreateProcedure() throws Exception {
+		String nameProcedure =  CommunicationManager.AskForText("Enter the name of the procedure");
+		ArrayList<String> listNameTask = new ArrayList<String>();
+		String value = "Sin descripcion";
+		int i = 1;
+		while(i!= -1) {
+			value = CommunicationManager.AskForText("Enter the description of the task number " +i+"\n or  -1  to continue...");
+			if(value.equals("-1")) {
+				i = -1;
+			}else {
+				listNameTask.add(value);
+				i++;
+			}
+		}
+		CommunicationManager.ShowMessage(""+listNameTask.size());
+		if(listNameTask.size() != 0) {
+			CommunicationManager.ShowMessage(this.gestorProcess.CrearProcedimiento(listNameTask,nameProcedure));
+		}else {
+			CommunicationManager.ShowMessage("Sorry I can not create the procedure");
+		}
+>>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 	}
 	public void ObtainProcedure() throws Exception {
-		EstrategiaGestor obtainProcedure = new ObtainProcedur(gestorProcess);
-		obtainProcedure.RunAction();
+		String infoProcedure;
+		infoProcedure = this.gestorProcess.obtenerProcedimiento();
+		CommunicationManager.ShowMessageLine(infoProcedure);
 	}
+<<<<<<< HEAD
 	
 	public boolean Logout() {
+=======
+	public void SendProcedure() throws Exception {
+		Employee employee = Login.employee;
+		if(employee.getTreatedProcedures().size() == 0) {
+			CommunicationManager.ShowMessage("");
+			CommunicationManager.ShowMessage(employee.getEmployeeFullName()+" "+ "does not have procedures.\n"
+			+ "Please, get one from your Department or create one.");
+			CommunicationManager.ShowMessage("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+		}else {
+			int index;
+			String idProcedure ="";
+			this.MostrarProcedures(employee.getTreatedProcedures());
+			idProcedure = CommunicationManager.AskForText("Enter the ID of the Procedure you want to treat :");
+			index = getIndexProdedure(employee.getTreatedProcedures(),idProcedure);
+			if(index >= 0) {
+				String idDep = employee.getDepartment().getIdDep();
+				//CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(index,idDep));//Aqui se cae Lavara
+			}
+		}
+	}
+	public void TreatProcedure() {
+		Employee employee = Login.employee;
+		int index;
+		String idProcedure ="";
+		this.MostrarProcedures(employee.getTreatedProcedures());
+		idProcedure = CommunicationManager.AskForText("Enter the ID of the Procedure you want to treat:");
+		index = getIndexProdedure(employee.getTreatedProcedures(),idProcedure);
+		if(index >= 0) {
+			boolean yesTreat = CheckProcedureTreatment();
+			CommunicationManager.ShowMessage(this.gestorProcess.tratarProcedimiento(index,yesTreat));
+		}
+	}
+	public boolean Logout(){
+>>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
 		Login.logOut();
 		return false;
 	}
 	
-	
-	
+	public void Exit() {
+		System.exit(0);
+	}
+	private void MostrarProcedures(ArrayList<Procedure> pProcedure) {
+		for(int i = 0; i<pProcedure.size(); i++) {
+			CommunicationManager.ShowMessage("");
+			CommunicationManager.ShowMessage(pProcedure.get(i).toString());
+			CommunicationManager.ShowMessage("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+		}
+	}
+	public void GetAllActiveProcedures() {
+		CommunicationManager.ShowMessage(this.gestorProcess.getAllActiveProcedures());
+	}
+	public void GetAllFinalizedProcedures() {
+		CommunicationManager.ShowMessage(this.gestorProcess.getAllFinalizedProcedures());
+	}
+	private int getIndexProdedure(ArrayList<Procedure> pProcedure,String idProcedure) {
+		int index = -1;
+		int j = 0;
+		while(j<pProcedure.size()){
+			if(pProcedure.get(j).getIdProcedure().equals(idProcedure)) {
+				index = j;
+			}
+			j++;
+		}
+		return index;
+	}
+
+	private boolean CheckProcedureTreatment(){
+		String value = "M";
+		while(value !="1" && value !="2") {
+			value = CommunicationManager.AskForText("1.Yes Treat Porceso \n2.No Treat Procedure\n");
+			if(value.equals("1")) {
+				return true;
+			}
+			if(value.equals("2")) {
+				return false;
+			}
+		}
+		return false;
+	}
 	public  int GetInteger(int limit) {
 	   int  option ;
 	   do {   
