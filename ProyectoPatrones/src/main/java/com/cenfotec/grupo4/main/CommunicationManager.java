@@ -4,16 +4,18 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class CommunicationManager {
-    public static int CantOptions = 4;
+    public static int CantOptions = 6;
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     public static void ShowMenu() {
- 	   	ShowMessage("Select action");
- 	   	ShowMessage("1. Crear procedimiento");
-        ShowMessage("2. Obtener procedimiento");
-        ShowMessage("3: Enviar procedimiento");
-        ShowMessage("4. Tratar procedimiento");
-        ShowMessage("5. Logout");
-        ShowMessage("6: Salir");
+ 	   	ShowMessage("\nSelect action");
+ 	   	ShowMessage("1. Create procedure");
+        ShowMessage("2. Get the Department procedure");
+        ShowMessage("3: Send procedure");
+        ShowMessage("4. Treat the procedure");
+        ShowMessage("5: Get All Active Procedures");
+        ShowMessage("6. Get All Finalized Procedures");
+        ShowMessage("7. Logout");
+        ShowMessage("8: Exit");
         ShowMessageLine("Enter option: ");
     }
     

@@ -5,6 +5,9 @@ public enum Action {
 	ObtainProcedure,
 	SendProcedure,
 	TreatProcedure,
+	GetAllActiveProcedures,
+	GetAllFinalizedProcedures,
 	Logout,
 	Exit
+
 }
