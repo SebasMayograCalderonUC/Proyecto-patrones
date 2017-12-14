@@ -19,7 +19,7 @@ public class GestorGeneral {
 	private static GestorGeneral gest=null;
 	private  ArrayList<Department> departments;
 	public  String bla;
-	private GestorGeneral() throws JsonParseException, JsonMappingException, IOException {
+	GestorGeneral() throws JsonParseException, JsonMappingException, IOException {
 		JsonManager jsonManager=new JsonManager();
 		this.departments=jsonManager.fetchDepartments();
 		this.bla="Estoy aqui";
