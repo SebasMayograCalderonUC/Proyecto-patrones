@@ -132,44 +132,24 @@ public class Employee {
 	}
 	
 	public String getAllActiveProcedures() {
-		String info="--------------------------\n";
+		String info="-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n";
 		for(Procedure procedure: this.treatedProcedures) {
 			if(StatusActive.class.isInstance(procedure.getActualStatus())) {
 				info=info+procedure.toString();
-				info+="--------------------------\n";
+				info+="-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n";
 			}
 		}
 		return info;
 	}
 	
 	public String getAllFinalizedAProcedures() {
-		String info="--------------------------\n";
+		String info="-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n";
 		for(Procedure procedure: this.treatedProcedures) {
 			if(StatusFinalized.class.isInstance(procedure.getActualStatus())) {
 				info=info+procedure.toString();
-				info+="--------------------------\n";
+				info+="-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n";
 			}
 		}
 		return info;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
