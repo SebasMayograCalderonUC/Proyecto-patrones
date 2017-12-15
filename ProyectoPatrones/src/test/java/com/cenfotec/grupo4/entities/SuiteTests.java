@@ -6,8 +6,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    DepartmentTest.class,
-    TaskTest.class
+    TaskTest.class,
 })
 
 public class SuiteTests {
