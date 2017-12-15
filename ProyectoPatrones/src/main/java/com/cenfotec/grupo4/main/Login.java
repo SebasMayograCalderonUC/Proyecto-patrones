@@ -1,17 +1,13 @@
 package com.cenfotec.grupo4.main;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
-
 import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Employee;
 import com.cenfotec.grupo4.gestor.GestorGeneral;
 
 public class Login {
-	
 	public static Employee employee=null;
 	
 	public static boolean login(String email,String password) throws Exception {
@@ -32,5 +28,4 @@ public class Login {
 	public static void logOut() {
 		employee=null;
 	}
-	
 }

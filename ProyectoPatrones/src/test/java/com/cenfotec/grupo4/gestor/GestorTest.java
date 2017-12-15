@@ -1,8 +1,6 @@
 package com.cenfotec.grupo4.gestor;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;

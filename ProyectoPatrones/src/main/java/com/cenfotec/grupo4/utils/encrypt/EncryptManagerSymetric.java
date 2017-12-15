@@ -1,5 +1,4 @@
 package com.cenfotec.grupo4.utils.encrypt;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,14 +11,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 import com.cenfotec.grupo4.interfaces.IEncryptManager;
 
 public class EncryptManagerSymetric implements IEncryptManager{
-
 	private final int KEYSIZE = 8;
 	private final String KEY_EXTENSION = ".keySymet";
 	private final String MESSAGE_ENCRYPT_EXTENSION = ".encriptSymet";
@@ -45,7 +42,6 @@ public class EncryptManagerSymetric implements IEncryptManager{
 				salir=true;
 			}catch(Exception ex) {
 				createKey(keyName);
-				System.out.println(ex.getMessage());
 			}
 		}while(!salir);	
 	}

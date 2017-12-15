@@ -22,9 +22,6 @@ public class GestorProcess implements IGestor{
 
 
 	private ArrayList<Employee> employees;
-	
-	//Metodos para acceder al Json
-	
 	public ArrayList<Employee>fetchEmpleados() throws JsonParseException, JsonMappingException, IOException{
 		return jason.fetchEmployees();
 	}
@@ -46,5 +43,4 @@ public class GestorProcess implements IGestor{
 	public void saveEmployees(ArrayList<Employee>empleados) throws JsonGenerationException, JsonMappingException, IOException {
 		jason.saveEmployees(empleados);
 	}
-	
 }

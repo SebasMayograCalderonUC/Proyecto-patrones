@@ -1,5 +1,4 @@
 package com.cenfotec.grupo4.utils.encrypt;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -25,14 +24,11 @@ import java.security.spec.RSAPublicKeySpec;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-
 import com.cenfotec.grupo4.interfaces.IEncryptManager;
 
 public class EncryptManagerAsymetric implements IEncryptManager{
-
 	private final String KEY_EXTENSION = ".keyAsym";
 	private final String PUBLIC = "public";
 	private final String PRIVATE = "private";
@@ -83,7 +79,6 @@ public class EncryptManagerAsymetric implements IEncryptManager{
 				writeBytesFile(messageName,encryptedData,MESSAGE_ENCRYPT_EXTENSION);
 			}catch(Exception ex) {
 				createKey(keyName);
-				System.out.println("ss");
 			}
 		}while(!salir);	
 	}
@@ -127,7 +122,7 @@ public class EncryptManagerAsymetric implements IEncryptManager{
 		  } finally {
 		    oin.close();
 		  }
-		}
+	}
 	
 	private byte[] readMessageFile(String messageName) throws Exception{
 		File file = new File(PATH + messageName + MESSAGE_ENCRYPT_EXTENSION);
@@ -140,7 +135,4 @@ public class EncryptManagerAsymetric implements IEncryptManager{
 		return oneDecoder.decode(bytes);
 		
 	}
-
-
-
 }
