@@ -14,19 +14,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.cenfotec.grupo4.entities.*;
 import com.cenfotec.grupo4.gestor.Action;
 import com.cenfotec.grupo4.gestor.GestorGeneral;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import com.cenfotec.grupo4.interfaces.use.EstrategiaGestor;
-import com.cenfotec.grupo4.ui.CreateProcedur;
-import com.cenfotec.grupo4.ui.ObtainProcedur;
-<<<<<<< HEAD
-=======
->>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
-=======
-import com.cenfotec.grupo4.ui.SendProcedur;
->>>>>>> parent of b381234... Fix encriptar
-=======
->>>>>>> Marvin
 import com.cenfotec.grupo4.utils.JsonManager;
 import org.springframework.core.env.Environment;
 
@@ -81,30 +68,12 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public boolean execMenu(int opcion) throws Exception {
 			switch (Action.values()[opcion-1]) {
 			case CreateProcedure:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 				this.CreateProcedure();
->>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
-=======
-				CreateProcedure();
->>>>>>> parent of b381234... Fix encriptar
-=======
-				this.CreateProcedure();
->>>>>>> Marvin
 				break;
 			case ObtainProcedure:
 				this.ObtainProcedure();
 				break;
 			case SendProcedure:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-				sendProcedure();
-=======
-=======
->>>>>>> Marvin
 				this.SendProcedure();
 				break;
 			case TreatProcedure:
@@ -115,13 +84,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 				break;
 			case GetAllFinalizedProcedures:
 				this.GetAllFinalizedProcedures();
-<<<<<<< HEAD
->>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
-=======
-				SendProcedure();
->>>>>>> parent of b381234... Fix encriptar
-=======
->>>>>>> Marvin
 				break;
 			case Logout:
 				this.Logout();
@@ -134,24 +96,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			}
 		return false;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public void sendProcedure() throws Exception {
-		CommunicationManager.ShowMessage(gestorProcess.getAllActiveProcedures());
-		CommunicationManager.ShowMessage("Deme el id del procedimiento");
-		String proid=br.readLine();
-		CommunicationManager.ShowMessage(gestorProcess.getDepartmentsIDs());
-		CommunicationManager.ShowMessage("Deme el id del departamento: ");
-		String idDep=br.readLine();
-		CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(proid, idDep));
-=======
-=======
->>>>>>> Marvin
-=======
 	
->>>>>>> Marvin
 	public void CreateProcedure() throws Exception {
 		String nameProcedure =  CommunicationManager.AskForText("Enter the name of the procedure");
 		ArrayList<String> listNameTask = new ArrayList<String>();
@@ -172,16 +117,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}else {
 			CommunicationManager.ShowMessage("Sorry I can not create the procedure");
 		}
-<<<<<<< HEAD
->>>>>>> 322022c20eeb800262b21ad925d08843cb8931f9
-=======
-	
-	public void CreateProcedure() throws Exception {
-		EstrategiaGestor createProcedure = new CreateProcedur(gestorProcess);
-		createProcedure.RunAction();
->>>>>>> parent of b381234... Fix encriptar
-=======
->>>>>>> Marvin
 	}
 	
 	public void ObtainProcedure() throws Exception {
@@ -189,21 +124,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		infoProcedure = this.gestorProcess.obtenerProcedimiento();
 		CommunicationManager.ShowMessageLine(infoProcedure);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-=======
-	public void SendProcedure() throws Exception {
-		EstrategiaGestor sendProcedure = new SendProcedur(gestorProcess);
-		sendProcedure.RunAction();
-	}
->>>>>>> parent of b381234... Fix encriptar
-	public boolean Logout() {
-=======
-=======
 
->>>>>>> Marvin
 	public void SendProcedure() throws Exception {
 		Employee employee = Login.employee;
 		if(employee.getTreatedProcedures().size() == 0) {
