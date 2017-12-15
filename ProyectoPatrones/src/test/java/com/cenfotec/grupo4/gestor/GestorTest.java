@@ -13,8 +13,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.cenfotec.grupo4.entities.Department;
-import com.cenfotec.grupo4.entities.SuiteTests;
 import com.cenfotec.grupo4.entities.TaskTest;
+import com.cenfotec.grupo4.suite.SuiteTests;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {SuiteTests.class})
