@@ -106,7 +106,7 @@ public class Department {
 		}
 	}
 	
-	public synchronized Procedure obtainProcedure() throws Exception	{
+	public synchronized Procedure obtainProcedure() throws Exception{
 		if(this.recivedProcedure!=null) {
 			decryptProcedures();
 		}
