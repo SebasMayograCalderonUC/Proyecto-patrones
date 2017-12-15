@@ -69,13 +69,23 @@ public class EncryptManagerAsymetric implements IEncryptManager{
 	}
 
 	public void encryptMessage(String messageName, String message, String keyName) throws Exception {
-		PublicKey pubKey = (PublicKey)readKeyFromFile(keyName, PUBLIC);
-		Cipher cipher = Cipher.getInstance("RSA");
-		cipher.init(Cipher.ENCRYPT_MODE, pubKey);
-		byte[] encryptedData = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
-	    Encoder oneEncoder = Base64.getEncoder();
-	    encryptedData = oneEncoder.encode(encryptedData);
-		writeBytesFile(messageName,encryptedData,MESSAGE_ENCRYPT_EXTENSION);
+		boolean salir=false;
+		do {
+			try {
+				PublicKey pubKey = (PublicKey)readKeyFromFile(keyName, PUBLIC);
+				Cipher cipher = Cipher.getInstance("RSA");
+				cipher.init(Cipher.ENCRYPT_MODE, pubKey);
+				byte[] encryptedData = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
+			    Encoder oneEncoder = Base64.getEncoder();
+			    encryptedData = oneEncoder.encode(encryptedData);
+			    salir=true;
+			    System.out.println("Vamo a ver si funca ");
+				writeBytesFile(messageName,encryptedData,MESSAGE_ENCRYPT_EXTENSION);
+			}catch(Exception ex) {
+				createKey(keyName);
+				System.out.println("ss");
+			}
+		}while(!salir);	
 	}
 	
 	public String decryptMessage(String messageName, String keyName) throws Exception {
