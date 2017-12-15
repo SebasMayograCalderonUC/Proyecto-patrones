@@ -4,6 +4,7 @@ package com.cenfotec.grupo4.suite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import com.cenfotec.grupo4.encrypt.EncryptManagerAsymetricTest;
 import com.cenfotec.grupo4.entities.DepartmentTest;
 import com.cenfotec.grupo4.entities.EmployeeTest;
 import com.cenfotec.grupo4.entities.ProcedureTest;
@@ -21,6 +22,7 @@ import com.cenfotec.grupo4.utils.JsonManagerTest;
     StatusActiveTest.class,
     StatusFinalizedTest.class,
     JsonManagerTest.class,
+    EncryptManagerAsymetricTest.class,
 })
 
 public class SuiteTests {

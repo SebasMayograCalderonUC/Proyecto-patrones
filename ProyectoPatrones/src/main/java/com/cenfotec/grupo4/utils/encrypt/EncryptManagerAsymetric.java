@@ -94,7 +94,7 @@ public class EncryptManagerAsymetric implements IEncryptManager{
 	}
 	
 	
-	private void writeBytesFile(String name, byte[] content, String type) throws FileNotFoundException, IOException {
+	public void writeBytesFile(String name, byte[] content, String type) throws FileNotFoundException, IOException {
 		FileOutputStream fos = new FileOutputStream(PATH + name + type);
 		fos.write(content);
 		fos.close();
@@ -124,7 +124,7 @@ public class EncryptManagerAsymetric implements IEncryptManager{
 		  }
 	}
 	
-	private byte[] readMessageFile(String messageName) throws Exception{
+	public byte[] readMessageFile(String messageName) throws Exception{
 		File file = new File(PATH + messageName + MESSAGE_ENCRYPT_EXTENSION);
         int length = (int) file.length();
         BufferedInputStream reader = new BufferedInputStream(new FileInputStream(file));
