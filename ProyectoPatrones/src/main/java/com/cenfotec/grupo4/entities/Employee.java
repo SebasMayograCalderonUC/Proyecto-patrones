@@ -1,14 +1,10 @@
 package com.cenfotec.grupo4.entities;
-
 import static org.hamcrest.CoreMatchers.instanceOf;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.JsonMappingException;
-
 import com.cenfotec.grupo4.interfaces.use.StatusActive;
 import com.cenfotec.grupo4.interfaces.use.StatusFinalized;
 import com.cenfotec.grupo4.utils.SavingType;
@@ -31,12 +27,10 @@ public class Employee {
 	private String password;
 	@JsonProperty
 	private String email;
-	
 	@JsonIgnore
 	private Department department;
 	
 	public Employee() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Employee(String employeeFullName, String job,String email,String password) {
@@ -117,7 +111,6 @@ public class Employee {
 		return "Procedure: "+treatedProcedures.get(treatedProcedures.size()-1).getProcedureName()+" recived!";	
 	}
 	
-
 	public String getPassword() {
 		return password;
 	}
@@ -148,6 +141,7 @@ public class Employee {
 		}
 		return info;
 	}
+	
 	public String getAllFinalizedAProcedures() {
 		String info="--------------------------\n";
 		for(Procedure procedure: this.treatedProcedures) {
@@ -158,8 +152,6 @@ public class Employee {
 		}
 		return info;
 	}
-	
-	
 }
 
 

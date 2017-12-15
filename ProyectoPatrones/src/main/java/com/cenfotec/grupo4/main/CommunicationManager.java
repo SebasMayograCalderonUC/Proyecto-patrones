@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 public class CommunicationManager {
     public static int CantOptions = 6;
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    
     public static void ShowMenu() {
  	   	ShowMessage("\nSelect action");
  	   	ShowMessage("1. Create procedure");
@@ -26,6 +27,7 @@ public class CommunicationManager {
     public static void ShowMessage(String message) {
  	   System.out.println(message);
     }
+    
     public static String AskForText(String message) {
     	String value = "Error";
     	boolean exit = true;
@@ -34,7 +36,7 @@ public class CommunicationManager {
     			System.out.println(message);
     			value = br.readLine();
     			if(value.trim().length() == 0 || value.equals("")) {
-    				 throw new  Exception("Valor ingresado no valido");
+    				 throw new  Exception("The value entered is not valid");
     			}
     			exit = false;
     			System.out.println();
@@ -43,7 +45,8 @@ public class CommunicationManager {
     		}
 		}
   	   return value;
-     }
+    }
+    
     public static int  GetInt(String message) {
     	int value = -1;
     	boolean exit = true;
@@ -54,9 +57,8 @@ public class CommunicationManager {
     			exit = false;
     			System.out.println();
     		} catch (Exception e) {
-    			System.out.println("Valor ingresado no valido");
     		}
 		}
   	   return value;
-     }
+   }
 }

@@ -1,12 +1,9 @@
 package com.cenfotec.grupo4.main;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
-
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -14,7 +11,6 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.cenfotec.grupo4.entities.*;
 import com.cenfotec.grupo4.gestor.Action;
 import com.cenfotec.grupo4.gestor.GestorGeneral;
@@ -32,15 +28,11 @@ import com.cenfotec.grupo4.ui.SendProcedur;
 =======
 >>>>>>> Marvin
 import com.cenfotec.grupo4.utils.JsonManager;
-
 import org.springframework.core.env.Environment;
-
 
 @SpringBootApplication
 public class ProyectoPatronesApplication implements CommandLineRunner {
-	
 	private static GestorGeneral gestorProcess;
-
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public static void main(String[] args) throws Exception {
@@ -50,10 +42,8 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
 	}
-
 	
 	public void run(String... args) throws Exception {
-	
 		int option;
 		do {
 			Login();
@@ -68,8 +58,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			CommunicationManager.ShowMessage("\n");
 			CommunicationManager.ShowMessage("\n");
 			CommunicationManager.ShowMessage("Processing controller 0.1");
-	}while(Action.values()[option-1]!=Action.Exit);
-
+		}while(Action.values()[option-1]!=Action.Exit);
     }
 	
 	public void Login() throws Exception {
@@ -140,13 +129,12 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			case Exit:
 				this.Exit();
 				break;
-			
-
 			default:
 				CommunicationManager.ShowMessage("Invalid option try again");
 			}
 		return false;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -160,6 +148,9 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(proid, idDep));
 =======
 =======
+>>>>>>> Marvin
+=======
+	
 >>>>>>> Marvin
 	public void CreateProcedure() throws Exception {
 		String nameProcedure =  CommunicationManager.AskForText("Enter the name of the procedure");
@@ -223,14 +214,16 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}else {
 			int index;
 			String idProcedure ="";
-			this.MostrarProcedures(employee.getTreatedProcedures());
+			this.ToSwowProcedures(employee.getTreatedProcedures());
 			idProcedure = CommunicationManager.AskForText("Enter the ID of the Procedure you want to treat :");
 			index = getIndexProdedure(employee.getTreatedProcedures(),idProcedure);
-			if(index >= 0) {
-				CommunicationManager.ShowMessage(gestorProcess.getDepartmentsIDs());
-				CommunicationManager.ShowMessage("Enter the ID  of the Department: ");
-				String idDep=br.readLine();
-				CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(index,idDep));//Aqui se cae Lavara
+			CommunicationManager.ShowMessage(gestorProcess.getDepartmentsIDs());
+			CommunicationManager.ShowMessage("Enter the ID  of the Department: ");
+			String idDep=br.readLine();
+			if(index >= 0 && gestorProcess.ValidarExisteDepartamento(idDep)) {
+				CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(index,idDep));
+			}else {
+				CommunicationManager.ShowMessage("Error when sending the procedure");
 			}
 		}
 	}
@@ -238,14 +231,17 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		Employee employee = Login.employee;
 		int index;
 		String idProcedure ="";
-		this.MostrarProcedures(employee.getTreatedProcedures());
+		this.ToSwowProcedures(employee.getTreatedProcedures());
 		idProcedure = CommunicationManager.AskForText("Enter the ID of the Procedure you want to treat:");
 		index = getIndexProdedure(employee.getTreatedProcedures(),idProcedure);
 		if(index >= 0) {
 			boolean yesTreat = CheckProcedureTreatment();
 			CommunicationManager.ShowMessage(this.gestorProcess.tratarProcedimiento(index,yesTreat));
+		}else {
+			CommunicationManager.ShowMessage("Error in dealing the procedure");
 		}
 	}
+	
 	public boolean Logout(){
 		Login.logOut();
 		return false;
@@ -254,19 +250,23 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public void Exit() {
 		System.exit(0);
 	}
-	private void MostrarProcedures(ArrayList<Procedure> pProcedure) {
+	
+	private void ToSwowProcedures(ArrayList<Procedure> pProcedure) {
 		for(int i = 0; i<pProcedure.size(); i++) {
 			CommunicationManager.ShowMessage("");
 			CommunicationManager.ShowMessage(pProcedure.get(i).toString());
 			CommunicationManager.ShowMessage("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 		}
 	}
+	
 	public void GetAllActiveProcedures() {
 		CommunicationManager.ShowMessage(this.gestorProcess.getAllActiveProcedures());
 	}
+	
 	public void GetAllFinalizedProcedures() {
 		CommunicationManager.ShowMessage(this.gestorProcess.getAllFinalizedProcedures());
 	}
+	
 	private int getIndexProdedure(ArrayList<Procedure> pProcedure,String idProcedure) {
 		int index = -1;
 		int j = 0;
@@ -278,7 +278,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}
 		return index;
 	}
-
+	
 	private boolean CheckProcedureTreatment(){
 		String value = "M";
 		while(value !="1" && value !="2") {
@@ -292,6 +292,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}
 		return false;
 	}
+	
 	public  int GetInteger(int limit) {
 	   int  option ;
 	   do {   
@@ -306,6 +307,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}	   
 	   }while(true);
    }
+	
    public  boolean ValidateOption(int option,int limit) {
 	   if(option>0 && option<=limit) {
 		   return true;

@@ -1,13 +1,9 @@
 package com.cenfotec.grupo4.gestor;
-
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
-
 import com.cenfotec.grupo4.entities.Department;
 import com.cenfotec.grupo4.entities.Procedure;
 import com.cenfotec.grupo4.interfaces.IGestor;
@@ -17,6 +13,7 @@ import com.cenfotec.grupo4.utils.SavingType;
 import com.cenfotec.grupo4.utils.encrypt.Encryptor;
 
 public class GestorGeneral {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -41,6 +38,12 @@ public class GestorGeneral {
 	}
 	public static GestorGeneral getInstance() throws JsonParseException, JsonMappingException, IOException {
 =======
+=======
+	private static GestorGeneral gest=null;
+	private  ArrayList<Department> departments;
+	public  String bla;
+	
+>>>>>>> Marvin
 	public GestorGeneral() throws Exception {
 		JsonManager jsonManager=new JsonManager();
 		this.departments=jsonManager.fetchDepartments();
@@ -49,6 +52,7 @@ public class GestorGeneral {
 			encryp.createKey(dep.getPrivatekey());
 		}
 	}
+	
 	public static GestorGeneral getInstance() throws Exception {
 >>>>>>> Marvin
 		if(gest==null) {
@@ -56,6 +60,7 @@ public class GestorGeneral {
 		}
 		return gest;
 	}
+	
 	public ArrayList<Department> getDepartments(){
 		return departments;
 	}
@@ -77,7 +82,14 @@ public class GestorGeneral {
 		}
 		return Login.employee.sendProcedure(departemnt, procedureIndex);
 	}
-	
+	public boolean ValidarExisteDepartamento(String idDep){
+		for(Department dep:departments) {
+			if(dep.getIdDep().equals(idDep)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	public String tratarProcedimiento(int procedureIndex,boolean responce) {
 		return Login.employee.treatProcedure(procedureIndex, responce);
 	}
@@ -91,10 +103,10 @@ public class GestorGeneral {
 <<<<<<< HEAD
 =======
 	public String getDepartmentsIDs() {
-		String ids="---------------------------------\n";
+		String ids="-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n";
 		for(Department dep:this.departments) {
 			ids+="id: "+dep.getIdDep()+"\n";
-			ids+="---------------------------------\n";
+			ids+="-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n";
 		}
 		return ids;
 	}
@@ -103,9 +115,11 @@ public class GestorGeneral {
 	public String getAllActiveProcedures() {
 		return Login.employee.getAllActiveProcedures();
 	}
+	
 	public String getAllFinalizedProcedures() {
 		return Login.employee.getAllFinalizedAProcedures();
 	}
+<<<<<<< HEAD
 	
 <<<<<<< HEAD
 }
@@ -164,5 +178,8 @@ public class GestorGeneral {
 >>>>>>> Marvin
 =======
 	
+}
+>>>>>>> Marvin
+=======
 }
 >>>>>>> Marvin
