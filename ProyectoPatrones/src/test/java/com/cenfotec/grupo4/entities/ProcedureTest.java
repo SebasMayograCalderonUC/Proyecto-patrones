@@ -11,16 +11,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ProcedureTest {
-	private static Procedure procedure;
+	public static Procedure procedure;
 	
 	@BeforeClass
 	public static void init() {
-		procedure  = new Procedure("startingDate","finalDate",null,"procedureName");
+		procedure  = new Procedure("14/12/2017","20/12/2017",TaskTest.task,"Pocedimiento1");
 	}
 	
 	@Test
-	public void addTsk() {
-		procedure.addTask(null);
+	public void addTask() {
+		procedure.addTask("TaskName");
 	}
 	
 	@Test
@@ -30,23 +30,23 @@ public class ProcedureTest {
 	}
 	@Test
 	public void setAndGetProcedureName() {
-		procedure.setProcedureName(null);
-		assertEquals(null, procedure.getProcedureName());
+		procedure.setProcedureName("ProcedureName");
+		assertEquals("ProcedureName", procedure.getProcedureName());
 	}
 	@Test
 	public void setAndGetIdProcedure() {
-		procedure.setIdProcedure(null);
-		assertEquals(null,procedure.getIdProcedure());
+		procedure.setIdProcedure("IdProcedure");
+		assertEquals("IdProcedure",procedure.getIdProcedure());
 	}
 	@Test
 	public void setAndGetStartingDate() {
-		procedure.setStartingDate(null);
-		assertEquals(null, procedure.getStartingDate());
+		procedure.setStartingDate("05/3/2017");
+		assertEquals("05/3/2017", procedure.getStartingDate());
 	}
 	@Test
 	public void setAndGetfinalDate() {
-		procedure.setFinalDate(null);
-		assertEquals(null, procedure.getFinalDate());
+		procedure.setFinalDate("25/3/2017");
+		assertEquals("25/3/2017", procedure.getFinalDate());
 	}
 	@Test
 	public void setAndGetCurrentTask() {

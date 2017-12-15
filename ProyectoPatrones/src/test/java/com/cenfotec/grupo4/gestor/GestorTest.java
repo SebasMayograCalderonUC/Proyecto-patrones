@@ -1,4 +1,6 @@
 package com.cenfotec.grupo4.gestor;
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import org.codehaus.jackson.JsonGenerationException;
@@ -17,42 +19,44 @@ import com.cenfotec.grupo4.entities.Department;
 @SpringBootTest
 public class GestorTest {
 	private static GestorGeneral gestor;
+	private static ArrayList<String> tareas;
+	private static ArrayList<Department> departa;
 	
 	@BeforeClass
 	public static void init() throws Exception {
-		gestor = new GestorGeneral();
-	}
-	
-	@Test
-	public static GestorGeneral getInstance() throws Exception {
-		return gestor.getInstance();
+		gestor = GestorGeneral.getInstance();
 	}
 	@Test
-	public ArrayList<Department> getDepartments(){
-		return gestor.getDepartments();
+	public void getInstance() throws Exception{
+		assertEquals(gestor,gestor.getInstance());
 	}
 	@Test
-	public String obtenerProcedimiento() throws Exception {
-		return gestor.obtenerProcedimiento();
+	public void getDepartments(){
+		departa = gestor.getDepartments();
+		assertEquals(departa, gestor.getDepartments());
 	}
 	@Test
-	public String enviarProcedimiento() throws JsonGenerationException, JsonMappingException, IOException, Exception {
-		return gestor.enviarProcedimiento(0, null);
+	public void obtenerProcedimiento() throws Exception {
+		gestor.obtenerProcedimiento();
 	}
 	@Test
-	public String tratarProcedimiento() {
-		return gestor.tratarProcedimiento(0, true);
+	public void enviarProcedimiento() throws JsonGenerationException, JsonMappingException, IOException, Exception {
+		 gestor.enviarProcedimiento(0, "IdDepartment");
 	}
 	@Test
-	public String CrearProcedimiento() {
-		return gestor.CrearProcedimiento(null, null);
+	public void tratarProcedimiento() {
+		 gestor.tratarProcedimiento(0, true);
 	}
 	@Test
-	public String getAllActiveProcedures() {
-		return gestor.getAllActiveProcedures();
+	public void CrearProcedimiento() {
+		gestor.CrearProcedimiento(tareas, "ProcedureTest");
 	}
 	@Test
-	public String getAllFinalizedProcedures() {
-		return gestor.getAllFinalizedProcedures();
+	public void getAllActiveProcedures() {
+		 gestor.getAllActiveProcedures();
+	}
+	@Test
+	public void getAllFinalizedProcedures() {
+		 gestor.getAllFinalizedProcedures();
 	}
 }
