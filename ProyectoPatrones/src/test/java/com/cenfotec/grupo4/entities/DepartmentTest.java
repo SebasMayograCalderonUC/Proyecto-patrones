@@ -1,6 +1,9 @@
 package com.cenfotec.grupo4.entities;
 
+import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,16 +14,21 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@ContextConfiguration(classes = {SuiteTests.class})
 public class DepartmentTest {
 	public static Department depart;
-	private static Procedure procedure;
+	private static  Procedure procedure = new Procedure();
+	private static ArrayList<Employee> empleados = new ArrayList<Employee>();
+	private static ArrayList<String> receivedProcedure= new ArrayList<String>();
+	private static ArrayList<Procedure> currentProcedures= new ArrayList<Procedure>();
+	
 	@BeforeClass
 	public static void init() {
-		depart = new Department("12345","67890",null,null,null,"Ventas");
+		depart = new Department("12345","67890",null,null,empleados,"Ventas");
 	}
 	
 	@Test
@@ -30,7 +38,7 @@ public class DepartmentTest {
 	}
 	@Test
 	public void setAndGetidDep() {
-		depart.setIdDep("idDep");
+		depart.setIdDep("id");
 		assertEquals("id",depart.getIdDep());
 	}
 	@Test
@@ -41,7 +49,7 @@ public class DepartmentTest {
 	@Test
 	public void setAndGetPrivateKey() {
 		depart.setPrivatekey("privateKey");
-		assertEquals("provateKey", depart.getPrivatekey());
+		assertEquals("privateKey", depart.getPrivatekey());
 	}
 	@Test
 	public void setAndGetReceivedProcedure() {
@@ -55,25 +63,21 @@ public class DepartmentTest {
 	}
 	@Test
 	public void setAndGetEmployees() {
-		depart.setEmployees(null);
-		assertEquals(null,depart.getEmployees());
+		depart.setEmployees(empleados);
+		assertEquals(empleados,depart.getEmployees());
 	}
 	@Test
 	public void setAndGetDepartmentName() {
 		depart.setDepartmentName("Ventas");
 		assertEquals("Ventas",depart.getDepartmentName());
 	}
-	@Test
-	public synchronized Procedure obtainProcedure() throws Exception {
-		return depart.obtainProcedure();
+	@Test(expected=NullPointerException.class)
+	public void obtainProcedure() throws Exception {
+		 assertNotNull(depart.obtainProcedure());
 	}
-	@Test
-	public void decryptedProcedures() throws Exception{
-		depart.decryptProcedures();
-	}
-	@Test
-	public String sendProcedureToDepartment() throws JsonGenerationException, JsonMappingException, IOException, Exception {
-		return depart.sendProcedureToDepartment(null, null);
+	@Test(expected=NullPointerException.class)
+	public void sendProcedureToDepartment() throws JsonGenerationException, JsonMappingException, IOException, Exception {
+		 depart.sendProcedureToDepartment(null, null);
 	}
 	@Test
 	public void recivedProcedure() {
