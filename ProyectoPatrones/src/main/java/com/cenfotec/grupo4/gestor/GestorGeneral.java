@@ -9,15 +9,23 @@ import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 
 import com.cenfotec.grupo4.entities.Department;
+import com.cenfotec.grupo4.entities.Procedure;
+import com.cenfotec.grupo4.interfaces.IGestor;
 import com.cenfotec.grupo4.main.Login;
 import com.cenfotec.grupo4.utils.JsonManager;
+import com.cenfotec.grupo4.utils.SavingType;
+import com.cenfotec.grupo4.utils.encrypt.Encryptor;
 
 public class GestorGeneral {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Marvin
 	
 	private static GestorGeneral gest=null;
 	private  ArrayList<Department> departments;
 	public  String bla;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	private GestorGeneral() throws Exception {
@@ -32,6 +40,17 @@ public class GestorGeneral {
 		this.bla="Estoy aqui";
 	}
 	public static GestorGeneral getInstance() throws JsonParseException, JsonMappingException, IOException {
+=======
+	public GestorGeneral() throws Exception {
+		JsonManager jsonManager=new JsonManager();
+		this.departments=jsonManager.fetchDepartments();
+		Encryptor encryp=Encryptor.getInstance(SavingType.Symetric);
+		for(Department dep:this.departments) {
+			encryp.createKey(dep.getPrivatekey());
+		}
+	}
+	public static GestorGeneral getInstance() throws Exception {
+>>>>>>> Marvin
 		if(gest==null) {
 			gest=new GestorGeneral();
 		}
@@ -48,7 +67,11 @@ public class GestorGeneral {
 	public String enviarProcedimiento(int procedureIndex,String departmentId) throws JsonGenerationException, JsonMappingException, IOException, Exception {
 		Department departemnt=null;
 		for(Department dep:departments) {
+<<<<<<< HEAD
 			if(dep.getIdDep()==departmentId) {
+=======
+			if(dep.getIdDep().equals(departmentId)) {
+>>>>>>> Marvin
 				departemnt=dep;
 			}
 		}
@@ -65,6 +88,18 @@ public class GestorGeneral {
 		return "The procedure has been added";
 	}
 	
+<<<<<<< HEAD
+=======
+	public String getDepartmentsIDs() {
+		String ids="---------------------------------\n";
+		for(Department dep:this.departments) {
+			ids+="id: "+dep.getIdDep()+"\n";
+			ids+="---------------------------------\n";
+		}
+		return ids;
+	}
+	
+>>>>>>> Marvin
 	public String getAllActiveProcedures() {
 		return Login.employee.getAllActiveProcedures();
 	}
@@ -72,6 +107,7 @@ public class GestorGeneral {
 		return Login.employee.getAllFinalizedAProcedures();
 	}
 	
+<<<<<<< HEAD
 }
 =======
  
@@ -124,5 +160,9 @@ public class GestorGeneral {
   return Login.employee.getAllFinalizedAProcedures();
  }
  
+}
+>>>>>>> Marvin
+=======
+	
 }
 >>>>>>> Marvin
