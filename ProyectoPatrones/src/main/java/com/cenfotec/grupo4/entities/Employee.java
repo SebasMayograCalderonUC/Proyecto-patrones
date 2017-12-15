@@ -1,21 +1,23 @@
 package com.cenfotec.grupo4.entities;
-import static org.hamcrest.CoreMatchers.instanceOf;
 import java.io.IOException;
 import java.util.ArrayList;
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.JsonMappingException;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import com.cenfotec.grupo4.interfaces.use.StatusActive;
 import com.cenfotec.grupo4.interfaces.use.StatusFinalized;
 import com.cenfotec.grupo4.utils.SavingType;
 import com.cenfotec.grupo4.utils.encrypt.Encryptor;
-import com.couchbase.client.core.annotations.InterfaceAudience.Private;
-import com.couchbase.client.core.annotations.InterfaceAudience.Public;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@Document(collection = "Employees")
 public class Employee {
 	private static int cantEmployees=0;
 	@JsonProperty
+	@Id
 	private String idEmployee;
 	@JsonProperty
 	private String employeeFullName;
