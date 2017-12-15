@@ -21,12 +21,12 @@ public class GestorTest {
 	private static GestorGeneral gestor;
 	
 	@BeforeClass
-	public static void init() throws JsonParseException, JsonMappingException, IOException {
+	public static void init() throws Exception {
 		gestor = new GestorGeneral();
 	}
 	
 	@Test
-	public static GestorGeneral getInstance() throws JsonParseException, JsonMappingException, IOException {
+	public static GestorGeneral getInstance() throws Exception {
 		return gestor.getInstance();
 	}
 	@Test

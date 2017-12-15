@@ -30,7 +30,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
-	public static void main(String[] args) throws JsonParseException, JsonMappingException, IOException {
+	public static void main(String[] args) throws Exception {
 		gestorProcess = GestorGeneral.getInstance();
 		
 		SpringApplication  app = new SpringApplication(ProyectoPatronesApplication.class);
@@ -59,7 +59,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 
     }
 	
-	public void Login() throws IOException {
+	public void Login() throws Exception {
 		String [] datos=pedirDatosLogin();
 		while(!Login.login(datos[0], datos[1])) {
 			System.out.println("Incorrect password, try again");
