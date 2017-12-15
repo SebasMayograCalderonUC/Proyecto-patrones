@@ -17,6 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.cenfotec.grupo4.suite.SuiteTests;
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {SuiteTests.class})
 public class DepartmentTest {
@@ -53,8 +55,8 @@ public class DepartmentTest {
 	}
 	@Test
 	public void setAndGetReceivedProcedure() {
-		depart.setRecivedProcedure(null);
-		assertEquals(null, depart.getRecivedProcedure());
+		depart.setRecivedProcedure(receivedProcedure);
+		assertEquals(receivedProcedure, depart.getRecivedProcedure());
 	}
 	@Test
 	public void setAndGetcurrentProcedure() {

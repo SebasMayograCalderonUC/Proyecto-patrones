@@ -5,7 +5,9 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.exc.UnrecognizedPropertyException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,10 +15,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.cenfotec.grupo4.suite.SuiteTests;
+
 @RunWith(SpringRunner.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @ContextConfiguration(classes = {SuiteTests.class})
 public class EmployeeTest {
-	private static Employee empleado;
+	public static Employee empleado;
 	
 	
 	@BeforeClass
@@ -68,7 +73,7 @@ public class EmployeeTest {
 	}
 	@Test(expected=NullPointerException.class)
 	public void getAllActiveProcedures() {
-		empleado.getAllActiveProcedures();
+		assertEquals(null,empleado.getAllActiveProcedures());
 	}
 	@Test
 	public void getAllFinalizedAProcedures() {

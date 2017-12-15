@@ -13,11 +13,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cenfotec.grupo4.entities.SuiteTests;
+import com.cenfotec.grupo4.entities.ProcedureTest;
+import com.cenfotec.grupo4.gestor.GestorGeneral;
+import com.cenfotec.grupo4.suite.SuiteTests;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {SuiteTests.class})
-@SpringBootTest
 public class StatusActiveTest {
 	public static StatusActive status;
 	
@@ -25,26 +26,25 @@ public class StatusActiveTest {
 	public static void init() throws JsonParseException, JsonMappingException, IOException {
 		status = new StatusActive();
 	}
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void treatProcedure() {
-		 status.treatProcedure(null, true);
+		status.treatProcedure(ProcedureTest.procedure, true);
 	}
-	
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void changeProcedureStatus() {
-		status.changeProcedureStatus(null);
+		status.changeProcedureStatus(ProcedureTest.procedure);
 	}
 	@Test
 	public void setAndGetStatus() {
-		status.setStatus(null);
-		assertEquals(null, status.getStatus());
+		status.setStatus("Active");
+		assertEquals("Active", status.getStatus());
 	}
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void treatTask() {
-		 status.treatTask(null, true);
+		status.treatTask(ProcedureTest.procedure, true);
 	}
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void CheckTask() {
-		 status.CheckTask(null);
+		status.CheckTask(ProcedureTest.procedure);
 	}
 }
