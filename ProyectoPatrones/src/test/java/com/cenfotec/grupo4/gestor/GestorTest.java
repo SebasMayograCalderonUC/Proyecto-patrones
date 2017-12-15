@@ -18,7 +18,7 @@ import com.cenfotec.grupo4.entities.Department;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GestorTest {
-	public  static GestorGeneral gestor;
+	private static GestorGeneral gestor;
 	
 	@BeforeClass
 	public static void init() throws JsonParseException, JsonMappingException, IOException {
