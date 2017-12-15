@@ -10,11 +10,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cenfotec.grupo4.gestor.GestorGeneral;
+import com.cenfotec.grupo4.entities.SuiteTests;
 
 @RunWith(SpringRunner.class)
+@ContextConfiguration(classes = {SuiteTests.class})
 @SpringBootTest
 public class StatusActiveTest {
 	public static StatusActive status;
@@ -23,11 +25,12 @@ public class StatusActiveTest {
 	public static void init() throws JsonParseException, JsonMappingException, IOException {
 		status = new StatusActive();
 	}
-	@Test
-	public String treatProcedure() {
-		return status.treatProcedure(null, true);
+	@Test(expected=NullPointerException.class)
+	public void treatProcedure() {
+		 status.treatProcedure(null, true);
 	}
-	@Test
+	
+	@Test(expected=NullPointerException.class)
 	public void changeProcedureStatus() {
 		status.changeProcedureStatus(null);
 	}
@@ -36,12 +39,12 @@ public class StatusActiveTest {
 		status.setStatus(null);
 		assertEquals(null, status.getStatus());
 	}
-	@Test
-	public String treatTask() {
-		return status.treatTask(null, true);
+	@Test(expected=NullPointerException.class)
+	public void treatTask() {
+		 status.treatTask(null, true);
 	}
-	@Test
-	public boolean CheckTask() {
-		return status.CheckTask(null);
+	@Test(expected=NullPointerException.class)
+	public void CheckTask() {
+		 status.CheckTask(null);
 	}
 }
