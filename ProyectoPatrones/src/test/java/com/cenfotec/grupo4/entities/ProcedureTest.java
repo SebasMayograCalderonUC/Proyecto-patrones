@@ -6,15 +6,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cenfotec.grupo4.interfaces.use.StatusActiveTest;
-import com.cenfotec.grupo4.interfaces.use.StatusFinalizedTest;
-import com.cenfotec.grupo4.suite.SuiteTests;
-
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {SuiteTests.class})
+@SpringBootTest
 public class ProcedureTest {
 	public static Procedure procedure;
 	
@@ -27,6 +22,7 @@ public class ProcedureTest {
 	public void addTask() {
 		procedure.addTask("TaskName");
 	}
+	
 	@Test
 	public void setAndGetCantProcedures() {
 		procedure.setCantProcedures(0);
@@ -54,22 +50,22 @@ public class ProcedureTest {
 	}
 	@Test
 	public void setAndGetCurrentTask() {
-		procedure.setCurrentTask(TaskTest.task);
-		assertEquals(TaskTest.task,procedure.getCurrentTask());
+		procedure.setCurrentTask(null);
+		assertEquals(null,procedure.getCurrentTask());
 	}
 	@Test
 	public void setAndGetActualStatus() {
-		procedure.setActualStatus(StatusActiveTest.status);
-		assertEquals(StatusActiveTest.status, procedure.getActualStatus());
+		procedure.setActualStatus(null);
+		assertEquals(null, procedure.getActualStatus());
 	}
 	@Test
 	public void setAndGetActivelStatus() {
-		procedure.setActiveStatus(StatusActiveTest.status);
-		assertEquals(StatusActiveTest.status, procedure.getActiveStatus());
+		procedure.setActiveStatus(null);
+		assertEquals(null, procedure.getActiveStatus());
 	}
 	@Test
 	public void setAndGetFinalizedStatus() {
-		procedure.setFinalizedStatus(StatusFinalizedTest.status);
-		assertEquals(StatusFinalizedTest.status,procedure.getFinalizedStatus());
+		procedure.setFinalizedStatus(null);
+		assertEquals(null,procedure.getFinalizedStatus());
 	}
 }

@@ -10,15 +10,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cenfotec.grupo4.entities.ProcedureTest;
 import com.cenfotec.grupo4.gestor.GestorGeneral;
-import com.cenfotec.grupo4.suite.SuiteTests;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {SuiteTests.class})
+@SpringBootTest
 public class StatusActiveTest {
 	public static StatusActive status;
 	
@@ -27,24 +24,24 @@ public class StatusActiveTest {
 		status = new StatusActive();
 	}
 	@Test
-	public void treatProcedure() {
-		status.treatProcedure(ProcedureTest.procedure, true);
+	public String treatProcedure() {
+		return status.treatProcedure(null, true);
 	}
 	@Test
 	public void changeProcedureStatus() {
-		status.changeProcedureStatus(ProcedureTest.procedure);
+		status.changeProcedureStatus(null);
 	}
 	@Test
 	public void setAndGetStatus() {
-		status.setStatus("Active");
-		assertEquals("Active", status.getStatus());
+		status.setStatus(null);
+		assertEquals(null, status.getStatus());
 	}
 	@Test
-	public void treatTask() {
-		status.treatTask(ProcedureTest.procedure, true);
+	public String treatTask() {
+		return status.treatTask(null, true);
 	}
 	@Test
-	public void CheckTask() {
-		status.CheckTask(ProcedureTest.procedure);
+	public boolean CheckTask() {
+		return status.CheckTask(null);
 	}
 }

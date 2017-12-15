@@ -5,18 +5,15 @@ import java.util.ArrayList;
 
 import org.codehaus.jackson.JsonGenerationException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.cenfotec.grupo4.utils.SavingType;
 import com.cenfotec.grupo4.utils.encrypt.Encryptor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Document(collection = "Departments")
+
 public class Department {
 	private static int cantDep=0;
 	@JsonProperty
-	@Id
 	private String idDep;
 	@JsonProperty
 	private String publicKey;
