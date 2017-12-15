@@ -14,7 +14,6 @@ import com.cenfotec.grupo4.entities.TaskTest;
 import com.cenfotec.grupo4.gestor.GestorTest;
 import com.cenfotec.grupo4.interfaces.use.StatusActiveTest;
 import com.cenfotec.grupo4.interfaces.use.StatusFinalizedTest;
-import com.cenfotec.grupo4.utils.JsonManagerTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
@@ -24,7 +23,6 @@ import com.cenfotec.grupo4.utils.JsonManagerTest;
     ProcedureTest.class,
     StatusActiveTest.class,
     StatusFinalizedTest.class,
-    JsonManagerTest.class,
     EncryptManagerAsymetricTest.class,
     EncryptManagerSymetricTest.class,
     EncryptorTest.class,

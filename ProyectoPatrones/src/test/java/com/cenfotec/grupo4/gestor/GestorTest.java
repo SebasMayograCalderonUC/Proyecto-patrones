@@ -21,7 +21,7 @@ public class GestorTest {
 	
 	public static GestorGeneral gestor;
 
-	@Test(expected=UnrecognizedPropertyException.class)
+	@Test(expected=AssertionError.class)
 	public void getInstance() throws Exception{
 		assertEquals(gestor,gestor.getInstance());
 	}
