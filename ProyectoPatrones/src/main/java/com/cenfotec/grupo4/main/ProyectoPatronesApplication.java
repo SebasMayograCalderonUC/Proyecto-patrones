@@ -32,7 +32,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	
 	public void run(String... args) throws Exception { 
 		int option;
-		do {
+		do { 
 			Login();
 			CommunicationManager.ShowMessage("\n");
 			CommunicationManager.ShowMessage("\n");
