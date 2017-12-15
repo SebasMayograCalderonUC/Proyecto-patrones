@@ -116,6 +116,7 @@ public class Employee {
 		this.treatedProcedures.add(newprocedure);
 		return "Procedure: "+treatedProcedures.get(treatedProcedures.size()-1).getProcedureName()+" recived!";	
 	}
+	
 
 	public String getPassword() {
 		return password;
