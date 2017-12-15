@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DepartmentTest {
-	private static Department depart;
+	public static Department depart;
 	private static Procedure procedure;
 	@BeforeClass
 	public static void init() {
@@ -30,7 +30,7 @@ public class DepartmentTest {
 	}
 	@Test
 	public void setAndGetidDep() {
-		depart.setIdDep(null);
+		depart.setIdDep("idDep");
 		assertEquals("id",depart.getIdDep());
 	}
 	@Test

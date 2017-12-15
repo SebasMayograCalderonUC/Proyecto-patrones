@@ -53,8 +53,8 @@ public class EmployeeTest {
 	}
 	@Test
 	public void setAndGetEmail() {
-		empleado.setEmail(null);
-		assertEquals(null, empleado.getEmail());
+		empleado.setEmail("email");
+		assertEquals("email", empleado.getEmail());
 	}
 	@Test
 	public String sendProcedure() throws JsonGenerationException, JsonMappingException, IOException, Exception {

@@ -17,7 +17,7 @@ import com.cenfotec.grupo4.gestor.GestorGeneral;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class StatusActiveTest {
-	private static StatusActive status;
+	public static StatusActive status;
 	
 	@BeforeClass
 	public static void init() throws JsonParseException, JsonMappingException, IOException {

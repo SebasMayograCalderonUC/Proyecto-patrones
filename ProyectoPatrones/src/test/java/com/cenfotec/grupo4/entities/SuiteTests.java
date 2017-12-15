@@ -6,11 +6,15 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    DepartmentTest.class,
-    TaskTest.class
+	
+	TaskTest.class
+   // DepartmentTest.class,
+//    EmployeeTest.class
 })
 
 public class SuiteTests {
-
+	public SuiteTests() {
+	
+	}
 }
 
