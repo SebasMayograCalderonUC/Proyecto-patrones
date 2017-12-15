@@ -25,13 +25,14 @@ public class GestorGeneral {
 			encryp.createKey(dep.getPrivatekey());
 		}
 	}
+	
 	public static GestorGeneral getInstance() throws Exception {
 		if(gest==null) {
 			gest=new GestorGeneral();
 		}
 		return gest;
 	}
-
+	
 	public ArrayList<Department> getDepartments(){
 		return departments;
 	}
