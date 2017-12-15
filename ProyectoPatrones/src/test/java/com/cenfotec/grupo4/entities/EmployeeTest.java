@@ -10,19 +10,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-<<<<<<< HEAD
 @ContextConfiguration(classes = {SuiteTests.class})
 public class EmployeeTest {
 	private static Employee empleado;
 	
-=======
-@SpringBootTest
-public class EmployeeTest {
-	private static Employee empleado;
->>>>>>> origin/jose
 	
 	@BeforeClass
 	public static void init() {
@@ -45,8 +40,8 @@ public class EmployeeTest {
 	}
 	@Test
 	public void setAndGetJob() {
-		empleado.setJob(null);
-		assertEquals(null, empleado.getJob());
+		empleado.setJob("Vendedor");
+		assertEquals("Vendedor", empleado.getJob());
 	}
 	@Test
 	public void setAndGettreatedProcedures() {
@@ -55,39 +50,33 @@ public class EmployeeTest {
 	}
 	@Test
 	public void setAndGettreatedPassword() {
-		empleado.setPassword(null);
-		assertEquals(null, empleado.getPassword());
+		empleado.setPassword("pass");
+		assertEquals("pass", empleado.getPassword());
 	}
 	@Test
 	public void setAndGetEmail() {
 		empleado.setEmail("email");
 		assertEquals("email", empleado.getEmail());
 	}
-	@Test
-	public String sendProcedure() throws JsonGenerationException, JsonMappingException, IOException, Exception {
-		return empleado.sendProcedure(null, 0);
+	@Test(expected=IndexOutOfBoundsException.class)
+	public void sendProcedure() throws JsonGenerationException, JsonMappingException, IOException, Exception {
+		empleado.sendProcedure(null, 0);
 	}
-	@Test
-	public String obteainProcedure() throws Exception {
-		return empleado.obtainProcedure();
+	@Test(expected=NullPointerException.class)
+	public void obteainProcedure() throws Exception {
+		empleado.obtainProcedure();
 	}
-<<<<<<< HEAD
 	@Test(expected=NullPointerException.class)
 	public void getAllActiveProcedures() {
 		empleado.getAllActiveProcedures();
-=======
-	@Test
-	public String getAllActiveProcedures() {
-		return empleado.getAllActiveProcedures();
->>>>>>> origin/jose
 	}
 	@Test
-	public String getAllFinalizedAProcedures() {
-		return empleado.getAllFinalizedAProcedures();
+	public void getAllFinalizedAProcedures() {
+		 empleado.getAllFinalizedAProcedures();
 	}
 	@Test
 	public void setAndGetDepartment() {
-		empleado.setDepartment(null);
-		assertEquals(null, empleado.getDepartment());
+		empleado.setDepartment(DepartmentTest.depart);
+		assertEquals(DepartmentTest.depart, empleado.getDepartment());
 	}
 }

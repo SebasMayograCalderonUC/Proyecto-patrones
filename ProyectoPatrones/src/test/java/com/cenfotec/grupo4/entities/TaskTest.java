@@ -27,7 +27,6 @@ public class TaskTest {
 	@Test
 	public void addTaskTest() {
 		task.addTask("TaskTest");
-		//assertEquals("TaskTest",task.getNextTask().getDescription());
 	}
 	@Test
 	public void setAndGetDescriptionTest() {
