@@ -1,8 +1,5 @@
 package com.cenfotec.grupo4.encrypt;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.codehaus.jackson.JsonParseException;
@@ -11,40 +8,40 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cenfotec.grupo4.suite.SuiteTests;
-import com.cenfotec.grupo4.utils.encrypt.EncryptManagerSymetric;
-
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {SuiteTests.class})
+@SpringBootTest
 public class EncryptManagerSymetricTest {
-	public static EncryptManagerSymetric encrypt;
+	public static EncryptManagerSymetricTest encrypt;
 	
 	@BeforeClass
 	public static void init() throws JsonParseException, JsonMappingException, IOException {
-		encrypt = new EncryptManagerSymetric();
+		encrypt = new EncryptManagerSymetricTest();
 	}
 	@Test
-	public void createKey() throws Exception {
-		encrypt.createKey("Key");
+	public void createKey() {
+		encrypt.createKey();
 	}
 	@Test
-	public void encryptMessage() throws Exception {
-		encrypt.encryptMessage("MessageName","Message","Key");
+	public void saveToFile() {
+		encrypt.saveToFile();
 	}
-	@Test(expected=FileNotFoundException.class)
-	public void decryptMessage() throws Exception {
-		 assertEquals("MessageName",encrypt.decryptMessage("MessageNamae","Key"));
+	@Test
+	public void encryptMessage() {
+		encrypt.encryptMessage();
 	}
-	@Test(expected=NullPointerException.class)
-	public void writeBytesFile() throws FileNotFoundException, Exception {
-		encrypt.writeBytesFile("File",null,"Type");
+	@Test
+	public String decryptMessage() {
+		return encrypt.decryptMessage();
 	}
-	@Test(expected=FileNotFoundException.class)
-	public void readMessageFile() throws Exception{
-		 assertEquals(null,encrypt.readMessageFile("Message"));
+	@Test
+	public void writeBytesFile() {
+		encrypt.writeBytesFile();
+	}
+	@Test
+	public byte[]readMessageFile(){
+		return encrypt.readMessageFile();
 	}
 	
 }

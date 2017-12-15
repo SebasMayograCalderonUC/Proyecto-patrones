@@ -5,24 +5,17 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 
 import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.exc.UnrecognizedPropertyException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cenfotec.grupo4.suite.SuiteTests;
-
 @RunWith(SpringRunner.class)
-@JsonIgnoreProperties(ignoreUnknown = true)
-@ContextConfiguration(classes = {SuiteTests.class})
+@SpringBootTest
 public class EmployeeTest {
-	public static Employee empleado;
-	
+	private static Employee empleado;
 	
 	@BeforeClass
 	public static void init() {
@@ -45,8 +38,8 @@ public class EmployeeTest {
 	}
 	@Test
 	public void setAndGetJob() {
-		empleado.setJob("Vendedor");
-		assertEquals("Vendedor", empleado.getJob());
+		empleado.setJob(null);
+		assertEquals(null, empleado.getJob());
 	}
 	@Test
 	public void setAndGettreatedProcedures() {
@@ -55,33 +48,33 @@ public class EmployeeTest {
 	}
 	@Test
 	public void setAndGettreatedPassword() {
-		empleado.setPassword("pass");
-		assertEquals("pass", empleado.getPassword());
+		empleado.setPassword(null);
+		assertEquals(null, empleado.getPassword());
 	}
 	@Test
 	public void setAndGetEmail() {
 		empleado.setEmail("email");
 		assertEquals("email", empleado.getEmail());
 	}
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void sendProcedure() throws JsonGenerationException, JsonMappingException, IOException, Exception {
-		empleado.sendProcedure(null, 0);
-	}
-	@Test(expected=NullPointerException.class)
-	public void obteainProcedure() throws Exception {
-		empleado.obtainProcedure();
-	}
-	@Test(expected=NullPointerException.class)
-	public void getAllActiveProcedures() {
-		assertEquals(null,empleado.getAllActiveProcedures());
+	@Test
+	public String sendProcedure() throws JsonGenerationException, JsonMappingException, IOException, Exception {
+		return empleado.sendProcedure(null, 0);
 	}
 	@Test
-	public void getAllFinalizedAProcedures() {
-		 empleado.getAllFinalizedAProcedures();
+	public String obteainProcedure() throws Exception {
+		return empleado.obtainProcedure();
+	}
+	@Test
+	public String getAllActiveProcedures() {
+		return empleado.getAllActiveProcedures();
+	}
+	@Test
+	public String getAllFinalizedAProcedures() {
+		return empleado.getAllFinalizedAProcedures();
 	}
 	@Test
 	public void setAndGetDepartment() {
-		empleado.setDepartment(DepartmentTest.depart);
-		assertEquals(DepartmentTest.depart, empleado.getDepartment());
+		empleado.setDepartment(null);
+		assertEquals(null, empleado.getDepartment());
 	}
 }

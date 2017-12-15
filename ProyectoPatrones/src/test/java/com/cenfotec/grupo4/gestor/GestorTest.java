@@ -1,52 +1,62 @@
 package com.cenfotec.grupo4.gestor;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.exc.UnrecognizedPropertyException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cenfotec.grupo4.suite.SuiteTests;
+import com.cenfotec.grupo4.entities.Department;
 
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {SuiteTests.class})
+@SpringBootTest
 public class GestorTest {
+	private static GestorGeneral gestor;
+	private static ArrayList<String> tareas;
+	private static ArrayList<Department> departa;
 	
-	public static GestorGeneral gestor;
-
-	@Test(expected=UnrecognizedPropertyException.class)
+	@BeforeClass
+	public static void init() throws Exception {
+		gestor = GestorGeneral.getInstance();
+	}
+	@Test
 	public void getInstance() throws Exception{
 		assertEquals(gestor,gestor.getInstance());
 	}
-	@Test(expected=Exception.class)
+	@Test
 	public void getDepartments(){
-		assertEquals(null, gestor.getDepartments());
+		departa = gestor.getDepartments();
+		assertEquals(departa, gestor.getDepartments());
 	}
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void obtenerProcedimiento() throws Exception {
-		assertEquals(null,gestor.obtenerProcedimiento());
+		gestor.obtenerProcedimiento();
 	}
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void enviarProcedimiento() throws JsonGenerationException, JsonMappingException, IOException, Exception {
-		 assertEquals(null,gestor.enviarProcedimiento(1, "IdDepartment"));
+		 gestor.enviarProcedimiento(0, "IdDepartment");
 	}
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void tratarProcedimiento() {
-		 assertEquals(null,gestor.tratarProcedimiento(0, true));
+		 gestor.tratarProcedimiento(0, true);
 	}
-	@Test(expected=NullPointerException.class)
+	@Test
+	public void CrearProcedimiento() {
+		gestor.CrearProcedimiento(tareas, "ProcedureTest");
+	}
+	@Test
 	public void getAllActiveProcedures() {
-		 assertNotNull(null,gestor.getAllActiveProcedures());
+		 gestor.getAllActiveProcedures();
 	}
-	@Test(expected=NullPointerException.class)
+	@Test
 	public void getAllFinalizedProcedures() {
-		 assertEquals(null,gestor.getAllFinalizedProcedures());
+		 gestor.getAllFinalizedProcedures();
 	}
 }
