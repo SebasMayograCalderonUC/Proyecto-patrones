@@ -151,7 +151,9 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 			idProcedure = CommunicationManager.AskForText("Enter the ID of the Procedure you want to treat :");
 			index = getIndexProdedure(employee.getTreatedProcedures(),idProcedure);
 			if(index >= 0) {
-				String idDep = employee.getDepartment().getIdDep();
+				CommunicationManager.ShowMessage(gestorProcess.getDepartmentsIDs());
+				CommunicationManager.ShowMessage("Enter the ID  of the Department: ");
+				String idDep=br.readLine();
 				CommunicationManager.ShowMessage(gestorProcess.enviarProcedimiento(index,idDep));//Aqui se cae Lavara
 			}
 		}
