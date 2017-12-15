@@ -164,7 +164,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public void CreateProcedure() throws Exception {
 		String nameProcedure =  CommunicationManager.AskForText("Enter the name of the procedure");
 		ArrayList<String> listNameTask = new ArrayList<String>();
-		String value = "Sin descripcion";
+		String value = "Not description";
 		int i = 1;
 		while(i!= -1) {
 			value = CommunicationManager.AskForText("Enter the description of the task number " +i+"\n or  -1  to continue...");
