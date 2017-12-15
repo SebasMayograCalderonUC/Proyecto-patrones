@@ -45,7 +45,7 @@ public class EncryptManagerSymetric implements IEncryptManager{
 				salir=true;
 			}catch(Exception ex) {
 				createKey(keyName);
-				System.out.println("s");
+				System.out.println(ex.getMessage());
 			}
 		}while(!salir);	
 	}
