@@ -31,14 +31,23 @@ public class EncryptManagerSymetric implements IEncryptManager{
 	}
 
 	public void encryptMessage(String messageName, String message, String keyName) throws Exception {
-		byte[] key = readKeyFile(keyName);
-		Cipher cipher = Cipher.getInstance("AES");
-		SecretKeySpec k = new SecretKeySpec(key,"AES");
-		cipher.init(Cipher.ENCRYPT_MODE, k);
-		byte[] encryptedData = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
-	    Encoder oneEncoder = Base64.getEncoder();
-	    encryptedData = oneEncoder.encode(encryptedData);
-		writeBytesFile(messageName,encryptedData,MESSAGE_ENCRYPT_EXTENSION);
+		boolean salir=false;
+		do {
+			try {
+				byte[] key = readKeyFile(keyName);
+				Cipher cipher = Cipher.getInstance("AES");
+				SecretKeySpec k = new SecretKeySpec(key,"AES");
+				cipher.init(Cipher.ENCRYPT_MODE, k);
+				byte[] encryptedData = cipher.doFinal(message.getBytes(StandardCharsets.UTF_8));
+			    Encoder oneEncoder = Base64.getEncoder();
+			    encryptedData = oneEncoder.encode(encryptedData);
+				writeBytesFile(messageName,encryptedData,MESSAGE_ENCRYPT_EXTENSION);
+				salir=true;
+			}catch(Exception ex) {
+				createKey(keyName);
+				System.out.println("s");
+			}
+		}while(!salir);	
 	}
 	
 	public String decryptMessage(String messageName, String keyName) throws Exception {
