@@ -163,8 +163,9 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 		}
 	}
 	
-	public boolean Logout(){
+	public boolean Logout() throws Exception{
 		Login.logOut();
+		Login();
 		return false;
 	}
 	
@@ -181,11 +182,21 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	}
 	
 	public void GetAllActiveProcedures() {
-		CommunicationManager.ShowMessage(this.gestorProcess.getAllActiveProcedures());
+		String info = this.gestorProcess.getAllActiveProcedures();
+		if(info.equals("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n")) {
+			CommunicationManager.ShowMessage("There are no active procedures");
+		}else {
+			CommunicationManager.ShowMessage(info);
+		}
 	}
 	
 	public void GetAllFinalizedProcedures() {
-		CommunicationManager.ShowMessage(this.gestorProcess.getAllFinalizedProcedures());
+		String info = this.gestorProcess.getAllFinalizedProcedures();
+		if(info.equals("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n")) {
+			CommunicationManager.ShowMessage("Without completed procedures");
+		}else {
+			CommunicationManager.ShowMessage(info);
+		}
 	}
 	
 	private int getIndexProdedure(ArrayList<Procedure> pProcedure,String idProcedure) {
