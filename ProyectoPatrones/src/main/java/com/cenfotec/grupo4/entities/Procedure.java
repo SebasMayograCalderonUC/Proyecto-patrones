@@ -1,25 +1,21 @@
 package com.cenfotec.grupo4.entities;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import java.util.ArrayList;
-import java.util.Date;
-
 import com.cenfotec.grupo4.interfaces.IStatus;
 import com.cenfotec.grupo4.interfaces.use.StatusActive;
 import com.cenfotec.grupo4.interfaces.use.StatusFinalized;
-import com.couchbase.client.core.annotations.InterfaceAudience.Public;
-
 import org.codehaus.jackson.annotate.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "Procedures")
 public class Procedure {
 	
 	private static int cantProcedures=0;
 	@JsonProperty
-	private String procedureName;
-	@JsonProperty
+	@Id
 	private String idProcedure;
+	@JsonProperty
+	private String procedureName;
 	@JsonProperty
 	private String startingDate;
 	@JsonProperty

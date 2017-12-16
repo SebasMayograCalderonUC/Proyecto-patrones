@@ -165,7 +165,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	
 	public boolean Logout(){
 		Login.logOut();
-		return true;
+		return false;
 	}
 	
 	public void Exit() {
