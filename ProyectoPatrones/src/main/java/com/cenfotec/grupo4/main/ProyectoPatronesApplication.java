@@ -111,7 +111,6 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 				i++;
 			}
 		}
-		CommunicationManager.ShowMessage(""+listNameTask.size());
 		if(listNameTask.size() != 0) {
 			CommunicationManager.ShowMessage(this.gestorProcess.CrearProcedimiento(listNameTask,nameProcedure));
 		}else {
@@ -184,7 +183,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public void GetAllActiveProcedures() {
 		String info = this.gestorProcess.getAllActiveProcedures();
 		if(info.equals("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n")) {
-			CommunicationManager.ShowMessage("There are no active procedures");
+			CommunicationManager.ShowMessage("\nThere are no active procedures");
 		}else {
 			CommunicationManager.ShowMessage(info);
 		}
@@ -193,7 +192,7 @@ public class ProyectoPatronesApplication implements CommandLineRunner {
 	public void GetAllFinalizedProcedures() {
 		String info = this.gestorProcess.getAllFinalizedProcedures();
 		if(info.equals("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n")) {
-			CommunicationManager.ShowMessage("Without completed procedures");
+			CommunicationManager.ShowMessage("\nWithout completed procedures");
 		}else {
 			CommunicationManager.ShowMessage(info);
 		}
