@@ -1,7 +1,9 @@
 package com.cenfotec.grupo4.entities;
 
 import org.codehaus.jackson.annotate.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "Tasks")
 public class Task {
 	
 	@JsonProperty
